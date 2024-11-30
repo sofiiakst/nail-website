@@ -23,7 +23,7 @@ export default function MotionBtn({ children }) {
         },
       }}
     >
-      <span className=" tracking-wide  h-full w-full block relative linear-mask">
+      <span className=" tracking-wide h-full w-full block relative linear-mask">
         {children}
       </span>
       <span className="block absolute inset-0 rounded-md p-px linear-overlay" />

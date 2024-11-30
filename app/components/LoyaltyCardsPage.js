@@ -15,7 +15,7 @@ export default function LoyaltyCardsPage() {
               What is a Loyalty Card?
             </h1>
           </Reveal>
-          <p className="text-primary-900 text-md sm:text-xl max-w-md mt-11">
+          <p className="text-primary-900 text-sm mr-16 text-md sm:text-xl max-w-md mt-11">
             Each time you come back, the store adds the number of visits to your
             Loyalty Card. After you collect enough visits, you can get
             discounts, free services, or special offers!

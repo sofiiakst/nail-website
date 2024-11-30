@@ -18,7 +18,7 @@ export default function Page() {
       />
       <Reveal>
         <div className="relative z-10 text-center ">
-          <h1 className="text-6xl text-primary-950 mb-24 tracking-tight font-semibold ">
+          <h1 className="text-5xl sm:text-6xl text-primary-950 mb-24 tracking-tight font-semibold ">
             Treat yourself,
             <br />
             today

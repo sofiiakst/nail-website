@@ -67,11 +67,11 @@ export default async function Form({
   return (
     <div>
       <form
-        className="lg:h-auto py-10 px-16 text-lg sm:text-xl flex gap-5 flex-col text-primary-900"
+        className="lg:h-auto py-10 px-16 text-lg sm:text-xl flex gap-5 flex-col text-primary-900 mr-5 sm:mr-0"
         encType="multipart/form-data"
       >
         {/* Service selection */}
-        <div className="space-y-4 space-x-4">
+        <div className="space-y-4 space-x-4 ">
           <label>Select the type of service:</label>
           <select
             required

@@ -16,7 +16,7 @@ export default function GiftCardsPage() {
               Give the gift of this experience!
             </h1>
           </Reveal>
-          <p className="text-primary-900 text-md sm:text-xl max-w-md mt-11">
+          <p className="text-primary-900 mr-16 text-sm sm:text-xl max-w-md mt-11">
             The perfect way to treat your loved ones to a moment of relaxation
             and pampering. Let them choose the pampering experience they
             deserve.
@@ -25,7 +25,7 @@ export default function GiftCardsPage() {
 
         {/* Right Section */}
         <div className="flex flex-col mt-20 mr-20 md:ml-80">
-          <h1 className="text-primary-950 ml-10 md:ml-6 font-bold mb-6 ">
+          <h1 className="text-primary-950 ml-0 md:ml-6 font-bold mb-6 ">
             HOW TO BUY THE GIFTCARD:
           </h1>
           <ToggleButton
