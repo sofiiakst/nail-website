@@ -18,7 +18,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: white; /* optional to remove black background */
+    background-color: white;
   }
   .spinner-mini {
     margin: 0;
@@ -36,9 +36,7 @@
     }
   }
 }
-*/
 
-/* For data picker */
 .rdp {
   --rdp-cell-size: 32px !important;
   --rdp-accent-color: theme("colors.primary.500") !important;
@@ -47,17 +45,16 @@
 }
 
 .custom-time-picker {
-  border: 1px solid #373a3d; /* Blue border */
-  border-radius: 0.375rem; /* Tailwind's rounded-md */
-  padding: 0.5rem; /* Padding around the input */
-  background-color: white; /* White background */
-  transition: border-color 0.2s ease-in-out; /* Smooth transition for hover/focus states */
+  border: 1px solid #373a3d;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  background-color: white;
+  transition: border-color 0.2s ease-in-out;
 }
 
-/* Optional: Add hover and focus styles */
 .custom-time-picker:focus {
   border-color: #373a3d;
-  outline: none; /* Remove default outline */
+  outline: none;
 }
 
 .radial-gradient {
