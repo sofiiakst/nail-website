@@ -42,7 +42,7 @@ export default function Contact() {
       </div>
 
       <div className="flex flex-col">
-        <h1 className="text-primary-900 font-bold ml-32 sm:ml-0 sm:text-xl mt-10 lg:mt-0">
+        <h1 className="text-primary-900 font-bold ml-28 sm:ml-0 sm:text-xl mt-10 lg:mt-0">
           VISIT THE NAIL SPA
         </h1>
         <iframe
