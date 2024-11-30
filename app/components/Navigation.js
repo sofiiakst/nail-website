@@ -27,7 +27,7 @@ export default function Navigation({ session }) {
             href="/giftcards"
             className="hover:text-primary-400 transition-colors text-primary-700 focus:underline"
           >
-            GIFT & LOYALTY CARDS
+            LOYALTY CARDS
           </Link>
         </li>
         <li>
@@ -124,7 +124,7 @@ export default function Navigation({ session }) {
                 href="/giftcards"
                 className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl"
               >
-                GIFT & LOYALTY CARDS
+                LOYALTY CARDS
               </Link>
             </li>
             <li>

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import HomePage from "./components/HomePage";
+/*
 import Image from "next/image";
 import bg from "../public/mainBg.png";
 
@@ -30,4 +31,8 @@ export default function Page() {
       </Reveal>
     </main>
   );
+}
+*/
+export default function Page() {
+  return <HomePage />;
 }

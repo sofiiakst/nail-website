@@ -23,7 +23,7 @@ export default function LoyaltyCardsPage() {
         </div>
 
         {/* Right Section */}
-        <div className="flex flex-col mt-20 mr-20 md:ml-80">
+        <div className="flex flex-col mt-20   md:ml-80">
           <h1 className="text-primary-950 ml-10 md:ml-6 font-bold mb-6 ">
             HOW TO BUY THE LOYALTY CARD:
           </h1>
@@ -31,7 +31,7 @@ export default function LoyaltyCardsPage() {
             title="Step 1"
             text="Click on the -Book An Appointment- button in our website. "
           />
-          <ToggleButton title="Step 2" text="Then click on -Loyalty Cards- " />
+          <ToggleButton title="Step 2" text="Then click on -Lo. Cards- " />
         </div>
       </div>
     </main>

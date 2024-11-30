@@ -10,7 +10,7 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row ">
         <div className="flex flex-col    ">
           <Reveal>
             <h1 className="text-primary-950 font-extrabold text-5xl md:text-6xl">
@@ -32,10 +32,11 @@ export default function Page() {
             </p>
           </Reveal>
         </div>
-        <div className="flex flex-col ml-5 mt-24 md:mt-10 md:ml-60">
+        <div className="flex flex-col items-center ml-5 mt-24 md:mt-10 md:ml-60">
           <h2 className="text-primary-600 text-xl md:text-2xl font-semibold ml-5">
             BUY A LOYALTY CARD <span className="text-primary-950"> (10€ )</span>
           </h2>
+
           <ToggleButton
             title="How the loyalty card works"
             text="On every 7th visit, you will receive either 50% discounts,free pedicures, or extra free complimentary services of your choice."
