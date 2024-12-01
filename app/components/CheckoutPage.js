@@ -43,7 +43,7 @@ export default function CheckoutPage({ amount }) {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3000/payment-success?amount=${amount}`,
+        return_url: `https://nail-website-demo.vercel.app/payment-success?amount=${amount}`,
       },
     });
 

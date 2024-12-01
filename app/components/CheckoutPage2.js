@@ -97,7 +97,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `http://localhost:3000/book-success?amount=${amount}`,
+          return_url: `https://nail-website-demo.vercel.app/book-success?amount=${amount}`,
         },
       });
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import bgDesk from "@/public/mainBg.png";
 import { useState, useEffect } from "react";
 import bgMob from "@/public/bgMob.png";
+import bgMob2 from "@/public/bgMob2.png";
 
 import MotionBtn from "@/app/components/MotionBtn";
 import Reveal from "@/app/components/Words";
@@ -25,7 +26,7 @@ export default function HomePage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const bg = isMobile ? bgMob : bgDesk;
+  const bg = isMobile ? bgMob2 : bgDesk;
 
   return (
     <main className="mt-28 ">
