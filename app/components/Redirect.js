@@ -11,8 +11,10 @@ export default function RedirectToBrowser() {
       userAgent.includes("Instagram") ||
       userAgent.includes("FBAN") ||
       userAgent.includes("FBAV");
+    const hasRedirected = sessionStorage.getItem("hasRedirected");
 
-    if (isInAppBrowser) {
+    if (isInAppBrowser && !hasRedirected) {
+      sessionStorage.setItem("hasRedirected", "true");
       alert(
         "You will be redirected to your default browser to log in securely."
       );
