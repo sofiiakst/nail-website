@@ -14,7 +14,7 @@ export default function RedirectToBrowser() {
       alert(
         "You will be redirected to your default browser to log in securely."
       );
-      window.location.href = "https://https://nail-website-demo.vercel.app"; // Replace with your app URL
+      window.location.href = "https://nail-website-demo.vercel.app"; // Replace with your app URL
     }
   }, []);
 
