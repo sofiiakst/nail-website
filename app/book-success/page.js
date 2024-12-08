@@ -19,7 +19,7 @@ export default function Page({ searchParams }) {
           userEmail: email,
           appointmentDate: appointmentDateTime,
           tech: tech,
-          amount: amount,
+          amount: revertToSuper(amount),
           serviceName: serviceName,
         });
 
