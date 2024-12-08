@@ -142,15 +142,25 @@ export async function saveAppointment(appointment) {
   try {
     const { data, error } = await supabase
       .from("Appointments") // Replace 'Appointments' with your actual table name if different
-      .insert([appointment]);
+      .insert([appointment])
+      .select("id") // Select the id of the inserted record
+      .single();
 
     if (error) {
       throw error;
     }
 
-    return data; // Successfully saved
+    return data.id; // Successfully saved
   } catch (error) {
     console.error("Error saving appointment to Supabase:", error);
     throw error;
   }
+}
+
+export async function deleteAppointment(id) {
+  const { data, error } = await supabase
+    .from("Appointments") // Replace with your table name
+    .delete()
+    .eq("id", id); // Assuming 'id' is the primary key
+  return { data, error };
 }

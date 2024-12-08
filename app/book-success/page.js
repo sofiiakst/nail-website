@@ -1,8 +1,37 @@
+"use client";
 import Link from "next/link";
 import MotionBtn from "../components/MotionBtn";
 import { revertToSuper } from "../lib/revertToSuper";
+import { useEffect } from "react";
+import { saveAppointment } from "../lib/dataServices";
 
 export default function Page({ searchParams }) {
+  useEffect(() => {
+    const email = searchParams?.email;
+    const appointmentDateTime = searchParams?.appointmentDateTime;
+    const tech = searchParams?.tech;
+    const amount = searchParams?.amount;
+    const serviceName = searchParams?.serviceName;
+
+    async function finalizeBooking() {
+      try {
+        await saveAppointment({
+          userEmail: email,
+          appointmentDate: appointmentDateTime,
+          tech: tech,
+          amount: amount,
+          serviceName: serviceName,
+        });
+
+        await sendEmail(email, { appointmentDateTime, tech });
+        console.log("Appointment saved and email sent!");
+      } catch (error) {
+        console.error("Error finalizing booking:", error);
+      }
+    }
+
+    finalizeBooking();
+  }, []);
   const amount = searchParams?.amount;
   const amount2 = revertToSuper(amount);
   return (

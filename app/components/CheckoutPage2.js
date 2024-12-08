@@ -9,7 +9,11 @@ import { useEffect, useState } from "react";
 import { convertToSub } from "../lib/convertToSub";
 import Spinner from "./Spinner";
 import { revertToSuper } from "../lib/revertToSuper";
-import { saveAppointment } from "../lib/dataServices";
+import {
+  deleteAppointment,
+  getAppointment,
+  saveAppointment,
+} from "../lib/dataServices";
 import { getUserEmail } from "../lib/getUserEmail";
 
 export default function CheckoutPage2({
@@ -55,19 +59,6 @@ export default function CheckoutPage2({
     setLoading(true);
 
     try {
-      const appointment = {
-        userEmail: email,
-        appointmentDate: appointmentDateTime,
-        tech: tech,
-        amount: revertToSuper(amount),
-        serviceName: serviceName,
-      };
-
-      // Save appointment to Supabase
-      await saveAppointment(appointment);
-
-      alert("Appointment saved successfully!");
-
       console.log("Attempting to send email...");
       const emailResponse = await fetch("/api/contact", {
         method: "POST",
@@ -97,7 +88,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `https://nail-website-demo.vercel.app/book-success?amount=${amount}`,
+          return_url: `https://nail-website-demo.vercel.app/book-success?email=${email}&appointmentDateTime=${appointmentDateTime}&tech=${tech}&amount=${amount}&serviceName=${serviceName}`,
         },
       });
 
