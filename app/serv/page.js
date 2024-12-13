@@ -19,7 +19,7 @@ export default function Page() {
               textDecorationThickness: "1px",
             }}
           >
-            <Link href="/mani" passHref>
+            <Link href="/mani" passHref className="notranslate">
               <MotionBtn2>Manicures</MotionBtn2>
             </Link>
           </div>
@@ -32,7 +32,7 @@ export default function Page() {
               textDecorationThickness: "1px",
             }}
           >
-            <Link href="/pedi" passHref>
+            <Link href="/pedi" passHref className="notranslate">
               <MotionBtn2>Pedicures</MotionBtn2>
             </Link>
           </div>
@@ -45,7 +45,7 @@ export default function Page() {
               textDecorationThickness: "1px",
             }}
           >
-            <Link href="/lashes" passHref>
+            <Link href="/lashes" passHref className="notranslate">
               <MotionBtn2>Eyelashes</MotionBtn2>
             </Link>
           </div>
@@ -58,7 +58,7 @@ export default function Page() {
               textDecorationThickness: "1px",
             }}
           >
-            <Link href="/loyaltyCards" passHref>
+            <Link href="/loyaltyCards" passHref className="notranslate">
               <MotionBtn2>Lo. Cards</MotionBtn2>
             </Link>
           </div>

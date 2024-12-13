@@ -75,7 +75,7 @@ export default async function Form({
           <label>Select the type of service:</label>
           <select
             required
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
+            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
             onChange={(e) => {
               const service = JSON.parse(e.target.value); // Parse the service
               onServiceChange(service); // Call handler to update parent state
@@ -96,7 +96,7 @@ export default async function Form({
           <input
             type="file"
             accept="image/*"
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
+            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
             onChange={(e) => onImageChange(e.target.files[0])} // Update the image file
           />
         </div>
@@ -106,7 +106,7 @@ export default async function Form({
           <label>Select the technician:</label>
           <select
             required
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
+            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
             onChange={(e) => {
               const tech = JSON.parse(e.target.value); // Parse the technician
               onTechChange(tech); // Call handler to update parent state

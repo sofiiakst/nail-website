@@ -103,3 +103,7 @@
     )
     transparent;
 }
+.notranslate {
+  translate: no;
+  -webkit-translate: no;
+}

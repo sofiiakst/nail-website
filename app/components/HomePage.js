@@ -40,7 +40,7 @@ export default function HomePage() {
       />
       <Reveal>
         <div className="relative z-10 text-center ">
-          <h1 className="text-5xl sm:text-6xl text-primary-950 mb-24 tracking-tight font-semibold ">
+          <h1 className="text-5xl sm:text-6xl text-primary-950 mb-24 tracking-tight font-semibold notranslate ">
             Treat yourself,
             <br />
             today
