@@ -18,7 +18,7 @@ export default function DateSelector({ onSelectDate }) {
       <DayPicker
         required
         disabled={(date) => isPast(date)}
-        className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl"
+        className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
           day: {
             width: "3rem", // Customize width of each day cell

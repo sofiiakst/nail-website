@@ -25,7 +25,7 @@ export default function Navigation({ session }) {
         <li>
           <Link
             href="/giftcards"
-            className="hover:text-primary-400 transition-colors text-primary-700 focus:underline"
+            className="hover:text-primary-400 transition-colors text-primary-700 focus:underline notranslate"
           >
             LOYALTY CARDS
           </Link>
@@ -33,7 +33,7 @@ export default function Navigation({ session }) {
         <li>
           <Link
             href="/contact"
-            className="hover:text-primary-400 transition-colors text-primary-700 focus:underline"
+            className="hover:text-primary-400 transition-colors text-primary-700 focus:underline notranslate"
           >
             CONTACT US
           </Link>
@@ -122,7 +122,7 @@ export default function Navigation({ session }) {
               <Link
                 onClick={toggleMenu}
                 href="/giftcards"
-                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl"
+                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl notranslate"
               >
                 LOYALTY CARDS
               </Link>
@@ -131,7 +131,7 @@ export default function Navigation({ session }) {
               <Link
                 onClick={toggleMenu}
                 href="/contact"
-                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl"
+                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl notranslate"
               >
                 CONTACT US
               </Link>

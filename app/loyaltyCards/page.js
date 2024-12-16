@@ -13,10 +13,10 @@ export default function Page() {
       <div className="flex flex-col md:flex-row ">
         <div className="flex flex-col    ">
           <Reveal>
-            <h1 className="text-primary-950 font-extrabold text-5xl md:text-6xl">
+            <h1 className="text-primary-950 font-extrabold text-5xl md:text-6xl notranslate">
               Digital Loyalty Card
             </h1>
-            <h2 className="text-primary-950 font-bold mt-10 text-xl md:text-3xl max-w-md">
+            <h2 className="text-primary-950 font-bold mt-10 text-xl md:text-3xl max-w-md notranslate">
               Enjoy our service with rewards on your fingertips!
             </h2>
             <p className="text-primary-950 max-w-md mt-10 text-lg ">

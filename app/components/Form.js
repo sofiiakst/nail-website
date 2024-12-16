@@ -83,7 +83,11 @@ export default async function Form({
           >
             <option value="">Select the type of service...</option>
             {data?.map((service) => (
-              <option value={JSON.stringify(service)} key={service.name}>
+              <option
+                className="notranslate"
+                value={JSON.stringify(service)}
+                key={service.name}
+              >
                 {service.name} , {service.price}€
               </option>
             ))}
