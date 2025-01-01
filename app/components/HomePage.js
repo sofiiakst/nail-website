@@ -45,7 +45,7 @@ export default function HomePage() {
             <br />
             today
           </h1>
-          <Link href="/serv" passHref>
+          <Link href="/policy" passHref>
             <MotionBtn>BOOK AN APPOINTMENT</MotionBtn>
           </Link>
         </div>

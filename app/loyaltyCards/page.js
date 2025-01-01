@@ -11,24 +11,21 @@ export default function Page() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col md:flex-row ">
-        <div className="flex flex-col    ">
+        <div className="flex flex-col">
           <Reveal>
             <h1 className="text-primary-950 font-extrabold text-5xl md:text-6xl notranslate">
-              Digital Loyalty Card
+              Loyalty Card
             </h1>
             <h2 className="text-primary-950 font-bold mt-10 text-xl md:text-3xl max-w-md notranslate">
               Enjoy our service with rewards on your fingertips!
             </h2>
             <p className="text-primary-950 max-w-md mt-10 text-lg ">
-              A digital loyalty card for a nail spa enhances your pampering
-              experience with exclusive perks and seamless convenience.
+              A loyalty card for a nail spa enhances your pampering experience
+              with exclusive perks and seamless convenience.
               <span className="font-bold">
                 From free manicures,special offers like discounts on your
                 favorite services, complimentary treatments or priority booking.
               </span>
-            </p>
-            <p className="text-primary-600 max-w-md mt-10 text-xl font-bold ">
-              No more worrying about forgetting your card.
             </p>
           </Reveal>
         </div>
