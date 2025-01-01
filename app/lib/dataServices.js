@@ -164,3 +164,17 @@ export async function deleteAppointment(id) {
     .eq("id", id); // Assuming 'id' is the primary key
   return { data, error };
 }
+export async function getAppointments(startOfTomorrow, endOfTomorrow) {
+  const { data: appointments, error } = await supabase
+    .from("appointments") // Replace with your table name
+    .select("*")
+    .gte("appointmentDate", startOfTomorrow.toISOString()) // Greater or equal to the start of tomorrow
+    .lt("appointmentDate", endOfTomorrow.toISOString());
+
+  if (error) {
+    console.error("Error fetching appointments:", error);
+    throw error;
+  }
+
+  return appointments;
+}

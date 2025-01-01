@@ -31,7 +31,7 @@ export const sendEmail = async () => {
       from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
       to: session.user.email,
       subject: "Thank you for choosing us!",
-      text: "ΥΠΕΝΘΥΜΗΣΗ: Η προκαταβολη κρατειται σε περιπτωση ακυρωσης ραντεβου.",
+      text: "ΥΠΕΝΘΥΜΙΣΗ: Η προκαταβολη κρατειται σε περιπτωση ακυρωσης ραντεβου.",
     };
     const result = await transporter.sendMail(mailOptions);
     return result;

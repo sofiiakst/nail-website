@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
-
-import prisma from "../lib/db";
+import { getAppointments } from "../lib/dataServices";
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.AUTH_GOOGLE_ID,
@@ -23,14 +22,7 @@ export const sendEmail = async () => {
     const endOfTomorrow = new Date(startOfTomorrow);
     endOfTomorrow.setUTCDate(endOfTomorrow.getUTCDate() + 1);
 
-    const appointments = await prisma.appointments.findMany({
-      where: {
-        appointmentDate: {
-          gte: startOfTomorrow,
-          lt: endOfTomorrow,
-        },
-      },
-    });
+    const appointments = await getAppointments(startOfTomorrow, endOfTomorrow);
 
     if (appointments.length === 0) {
       console.log("No appointments found for tomorrow.");
@@ -53,24 +45,19 @@ export const sendEmail = async () => {
     });
 
     for (const appointment of appointments) {
-      const formattedDate = appointment.appointmentDate.toLocaleString(
-        "en-US",
-        {
-          timeZone: "UTC", // Change this to your desired time zone
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }
-      );
+      const formattedDate = appointment.appointmentDate.toUTCString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
       const mailOptions = {
         from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
         to: appointment.userEmail,
         subject: "APPOINTMENT REMINDER!",
-        text: `Don't forget your appointment tomorrow at ${formattedDate}.`,
+        text: `Υπενθυμιση για το αυριανο σου ραντεβου: ${formattedDate}.`,
       };
 
       const result = await transporter.sendMail(mailOptions);

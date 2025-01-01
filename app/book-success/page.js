@@ -4,6 +4,7 @@ import MotionBtn from "../components/MotionBtn";
 import { revertToSuper } from "../lib/revertToSuper";
 import { useEffect } from "react";
 import { saveAppointment } from "../lib/dataServices";
+import { sendEmail } from "../config/nodemailer";
 
 export default function Page({ searchParams }) {
   useEffect(() => {
