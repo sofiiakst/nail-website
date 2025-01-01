@@ -17,7 +17,9 @@ export default function DateSelector({ onSelectDate }) {
     <div className="flex flex-col justify-between ">
       <DayPicker
         required
-        disabled={(date) => isPast(date)}
+        disabled={(date) =>
+          isPast(date) || date.getDay() === 0 || date.getDay() === 6
+        }
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
           day: {
