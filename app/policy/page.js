@@ -19,7 +19,7 @@ export default function Page() {
           </h2>
           <h2 className="text-primary-800 font-bold text-l md:text-xl mt-5">
             2. Μετα απο το πρωτο δεκαλεπτο αργοποριας, το ραντεβου ακυρωνεται
-            αυτοματα, και η υπηρεσια δεν θα πραγματοποιηθει.
+            αυτοματα.
           </h2>
           <h2 className="text-primary-800 font-bold text-l md:text-xl mt-5">
             3. Η προκαταβολη ΚΡΑΤΕΙΤΑΙ ακομα και μετα την ακυρωση του ραντεβου.
