@@ -15,14 +15,14 @@ export default function Page() {
 
         <div className="mt-10 items-center flex flex-col max-w-80 sm:max-w-96">
           <h2 className="text-primary-800 font-bold text-l md:text-xl ">
-            1. Δεν πραγματοποιουνται αλλαγες στα ραντεβου.
+            1. Δεν πραγματοποιούνται αλλαγές στα ραντεβού.
           </h2>
           <h2 className="text-primary-800 font-bold text-l md:text-xl mt-5">
-            2. Μετα απο το πρωτο δεκαλεπτο αργοποριας, το ραντεβου ακυρωνεται
-            αυτοματα.
+            2. Μετά από το πρώτο δεκάλεπτο αργοπορίας, το ραντεβού ακυρώνεται
+            αυτόματα.
           </h2>
           <h2 className="text-primary-800 font-bold text-l md:text-xl mt-5">
-            3. Η προκαταβολη ΚΡΑΤΕΙΤΑΙ ακομα και μετα την ακυρωση του ραντεβου.
+            3. Η προκαταβολή ΚΡΑΤΕΊΤΑΙ ακόμα και μετά την ακύρωση του ραντεβού.
           </h2>
         </div>
       </div>
