@@ -30,7 +30,7 @@ export default function CheckoutClientComponent() {
   const amount = servicePrice ? convertToSub(servicePrice) : 1;
   const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
   const techName = searchParams.get("techName") || "";
-  const image = searchParams.get("image") || "";
+  const phone = searchParams.get("phone") || "";
 
   return (
     <Elements
@@ -47,6 +47,7 @@ export default function CheckoutClientComponent() {
         appointmentDateTime={appointmentDateTime}
         tech={techName}
         serviceName={serviceName}
+        phone={phone}
       />
     </Elements>
   );

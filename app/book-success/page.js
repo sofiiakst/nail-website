@@ -12,6 +12,7 @@ export default function Page({ searchParams }) {
     const tech = searchParams?.tech;
     const amount = searchParams?.amount;
     const serviceName = searchParams?.serviceName;
+    const phone = searchParams?.phone;
 
     async function finalizeBooking() {
       try {
@@ -21,6 +22,7 @@ export default function Page({ searchParams }) {
           tech: tech,
           amount: revertToSuper(amount),
           serviceName: serviceName,
+          phone: phone,
         });
 
         await sendEmail(email, { appointmentDateTime, tech });

@@ -16,8 +16,17 @@ export default function ClientFormWrapper({ data, tech }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [submitStatus, setSubmitStatus] = useState("idle");
-  const [image, setImage] = useState(null); // Optional image selection
+
+  const [phone, setPhone] = useState("");
   const router = useRouter();
+  const greekPhoneRegex = /^(69\d{8}|2\d{9})$/;
+
+  function handlePhoneChange(phone) {
+    setPhone(phone);
+    if (!greekPhoneRegex.test(phone)) {
+      alert("Invalid phone number!");
+    }
+  }
 
   // Handle form submission
   useEffect(() => {
@@ -70,7 +79,7 @@ export default function ClientFormWrapper({ data, tech }) {
               serviceName: selectedService.name,
               servicePrice: payUpfront(selectedService.price),
               techName: selectedTech.name,
-              image: image ? image.name : "",
+              phone: phone,
               appointmentDateTime: appointmentDateTimeISO,
             }).toString();
 
@@ -94,10 +103,18 @@ export default function ClientFormWrapper({ data, tech }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (selectedService && selectedTech && selectedDate && selectedTime) {
+    if (
+      selectedService &&
+      phone &&
+      selectedTech &&
+      selectedDate &&
+      selectedTime
+    ) {
       setSubmitStatus("submitting"); // Triggers useEffect to submit form
     } else {
-      alert("Please select a service, technician, date, and time.");
+      alert(
+        "Please provide phone number, select a service, technician, date, and time."
+      );
     }
   };
 
@@ -112,7 +129,7 @@ export default function ClientFormWrapper({ data, tech }) {
                 tech={tech}
                 onServiceChange={setSelectedService}
                 onTechChange={setSelectedTech}
-                onImageChange={setImage}
+                onPhoneChange={handlePhoneChange}
               />
             </div>
 
