@@ -19,7 +19,7 @@ export default function ClientFormWrapper({ data, tech }) {
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
-  const [fullName,setFullName]=useState("");
+  const [fullName, setFullName] = useState("");
   const router = useRouter();
   const greekPhoneRegex = /^(69\d{8}|2\d{9})$/;
 
@@ -28,6 +28,9 @@ export default function ClientFormWrapper({ data, tech }) {
     if (!greekPhoneRegex.test(phone)) {
       alert("Invalid phone number!");
     }
+  }
+  function handleNameChange(name) {
+    setFullName(name);
   }
 
   // Handle form submission
@@ -84,7 +87,7 @@ export default function ClientFormWrapper({ data, tech }) {
               phone: phone,
               image: image ? image.name : "",
               appointmentDateTime: appointmentDateTimeISO,
-              fullName:fullName,
+              fullName: fullName,
             }).toString();
 
             setSubmitStatus("success");
@@ -164,7 +167,10 @@ export default function ClientFormWrapper({ data, tech }) {
 
         <div className="mt-10  lg:mt-16">
           {selectedService && selectedTech && selectedDate && selectedTime ? (
-            <UserForm onPhoneChange={handlePhoneChange} />
+            <UserForm
+              onPhoneChange={handlePhoneChange}
+              onNameChange={handleNameChange}
+            />
           ) : null}
           {phone ? (
             <Link
