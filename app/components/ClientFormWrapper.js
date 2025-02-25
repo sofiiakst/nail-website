@@ -113,6 +113,7 @@ export default function ClientFormWrapper({ data, tech }) {
     if (
       selectedService &&
       phone &&
+      fullName &&
       selectedTech &&
       selectedDate &&
       selectedTime
@@ -120,7 +121,7 @@ export default function ClientFormWrapper({ data, tech }) {
       setSubmitStatus("submitting"); // Triggers useEffect to submit form
     } else {
       alert(
-        "Please provide phone number, select a service, technician, date, and time."
+        "Please provide phone number,full name, select a service, technician, date, and time."
       );
     }
   };
@@ -172,7 +173,7 @@ export default function ClientFormWrapper({ data, tech }) {
               onNameChange={handleNameChange}
             />
           ) : null}
-          {phone ? (
+          {phone && fullName ? (
             <Link
               onClick={handleSubmit}
               href="/checkout2"
