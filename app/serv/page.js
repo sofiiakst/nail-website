@@ -54,12 +54,12 @@ export default function Page() {
           <div
             className="rounded-md relative w-80 h-80 bg-cover bg-center  bg-black/30 flex items-center"
             style={{
-              backgroundImage: "url('/loyaltycard.jpg')",
+              backgroundImage: "url('/brows1.jpg')",
               textDecorationThickness: "1px",
             }}
           >
-            <Link href="/loyaltyCards" passHref className="notranslate">
-              <MotionBtn2>Lo. Cards</MotionBtn2>
+            <Link href="/brows" passHref className="notranslate">
+              <MotionBtn2>Eyebrows</MotionBtn2>
             </Link>
           </div>
         </div>

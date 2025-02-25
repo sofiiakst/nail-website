@@ -31,7 +31,8 @@ export default function Page() {
         </div>
         <div className="flex flex-col items-center ml-5 mt-24 md:mt-10 md:ml-60">
           <h2 className="text-primary-600 text-xl md:text-2xl font-semibold ml-5">
-            BUY A LOYALTY CARD <span className="text-primary-950"> (10€ )</span>
+            ΠΩΣ ΝΑ ΛΑΒΕΙΣ LOYATLY CARD{" "}
+            <span className="text-primary-950"> (10€ )</span>
           </h2>
 
           <ToggleButton

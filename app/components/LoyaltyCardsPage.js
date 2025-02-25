@@ -12,26 +12,38 @@ export default function LoyaltyCardsPage() {
         <div className="flex flex-col">
           <Reveal>
             <h1 className="text-primary-950 text-3xl sm:text-5xl font-bold max-w-md">
-              What is a Loyalty Card?
+              Loyalty Card
             </h1>
           </Reveal>
           <p className="text-primary-900 text-sm mr-16 text-md sm:text-xl max-w-md mt-11">
-            Each time you come back, the store adds the number of visits to your
-            Loyalty Card. After you collect enough visits, you can get
-            discounts, free services, or special offers!
+            Οι loyalty cards αποτελούν ένα  πρόγραμμα  επιβράβευσης για την
+            αφοσίωση και την προτίμηση των πελατών μας. Η ισχύς της κάρτας έχει
+            διάρκεια 10 μήνες και ξεκινάει από την μέρα που θα υπάρξει η πρώτη
+            σφραγίδα. Έπειτα από 7 συνεχόμενες επισκέψεις στο κατάστημα μας
+            έχοντας μαζεψει και τις 7 σφραγίδες κερδίζετε 50% στην επόμενη
+            επίσκεψη σας.
+          </p>
+          <p className="text-primary-900 text-sm mr-16 text-md sm:text-xl max-w-md mt-11">
+            * Σε περίπτωση απώλειας της κάρτας, δεν υπάρχει η δυνατότητα
+            αντικατάστασής της με τον αντίστοιχο αριθμό σφραγίδων. Ο πελάτης
+            μπορεί να ξεκινήσει μία νέα κάρτα επιβράβευσης αμέσως και έπειτα από
+            την ενημέρωση του προσωπικού για την απώλεια της.
           </p>
         </div>
 
         {/* Right Section */}
         <div className="flex flex-col mt-20   md:ml-80">
           <h1 className="text-primary-950 ml-10 md:ml-6 font-bold mb-6 ">
-            HOW TO BUY THE LOYALTY CARD:
+            ΠΩΣ ΘΑ ΛΑΒΕΙΣ ΚΑΡΤΑ ΕΠΙΒΡΑΒΕΥΣΗΣ:
           </h1>
           <ToggleButton
-            title="Step 1"
-            text="Click on the -Book An Appointment- button in our website. "
+            title="Κανονας 1"
+            text="•Μπορείτε να λάβετε την κάρτα επιβράβευσης σας έπειτα από τρεις συνεχόμενες προγραμματισμένες υπηρεσίες είτε αυτές είναι κλεισμένες στο κατάστημα είτε online έπειτα και εφόσον την ζητήσετε. "
           />
-          <ToggleButton title="Step 2" text="Then click on -Lo. Cards- " />
+          <ToggleButton
+            title="Κανονας 2"
+            text="•Δεν μπορείτε να λάβετε την κάρτα επιβράβευσης online πάρα μόνο έπειτα από κάποια επίσκεψη σας στο φυσικό μας κατάστημα. "
+          />
         </div>
       </div>
     </main>
