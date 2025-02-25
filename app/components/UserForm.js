@@ -18,6 +18,7 @@ export default function UserForm({ onPhoneChange, onNameChange }) {
         <div className="space-y-4 space-x-4">
           <label>Full Name:</label>
           <input
+            ref={inputRef}
             required
             type="text"
             placeholder="Full Name required "

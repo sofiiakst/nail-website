@@ -29,6 +29,7 @@ export default function Page({ searchParams }) {
 
         await sendEmail(email, { appointmentDateTime, tech });
         console.log("Appointment saved and email sent!");
+        
       } catch (error) {
         console.error("Error finalizing booking:", error);
       }
