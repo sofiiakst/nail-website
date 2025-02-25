@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
-export default async function UserForm({ onPhoneChange, onNameChange }) {
+export default function UserForm({ onPhoneChange, onNameChange }) {
   const inputRef = useRef(null);
   const handleBlur = () => {
     if (inputRef.current && inputRef.current.value.length >= 1) {
