@@ -22,6 +22,8 @@ export default function CheckoutPage2({
   tech,
   serviceName,
   phone,
+  image,
+  fullName,
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -89,7 +91,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `https://nail-website-demo.vercel.app/book-success?email=${email}&appointmentDateTime=${appointmentDateTime}&tech=${tech}&amount=${amount}&serviceName=${serviceName}&phone=${phone}`,
+          return_url: `https://nail-website-demo.vercel.app/book-success?email=${email}&appointmentDateTime=${appointmentDateTime}&tech=${tech}&amount=${amount}&serviceName=${serviceName}&phone=${phone}&image=${image}&fullName=${fullName}`,
         },
       });
 

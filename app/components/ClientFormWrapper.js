@@ -9,6 +9,7 @@ import DateSelector from "./DateSelector";
 import TimeSelector from "./TimeSelector";
 import Spinner from "./Spinner";
 import { payUpfront } from "../lib/payUpfront";
+import UserForm from "./UserForm";
 
 export default function ClientFormWrapper({ data, tech }) {
   const [selectedService, setSelectedService] = useState(null);
@@ -16,8 +17,9 @@ export default function ClientFormWrapper({ data, tech }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [submitStatus, setSubmitStatus] = useState("idle");
-
+  const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
+  const [fullName,setFullName]=useState("");
   const router = useRouter();
   const greekPhoneRegex = /^(69\d{8}|2\d{9})$/;
 
@@ -80,7 +82,9 @@ export default function ClientFormWrapper({ data, tech }) {
               servicePrice: payUpfront(selectedService.price),
               techName: selectedTech.name,
               phone: phone,
+              image: image ? image.name : "",
               appointmentDateTime: appointmentDateTimeISO,
+              fullName:fullName,
             }).toString();
 
             setSubmitStatus("success");
@@ -120,7 +124,7 @@ export default function ClientFormWrapper({ data, tech }) {
 
   return (
     <>
-      <div className="flex flex-col items-center h-auto  border border-primary-200 text-accent-400 lg:h-screen bg-primary-100">
+      <div className="flex flex-col items-center h-auto border border-primary-200 text-accent-400 lg:h-screen bg-primary-100">
         <div className="flex flex-col lg:flex-row ">
           <Suspense fallback={<Spinner />}>
             <div className="flex flex-col h-1/2">
@@ -129,7 +133,8 @@ export default function ClientFormWrapper({ data, tech }) {
                 tech={tech}
                 onServiceChange={setSelectedService}
                 onTechChange={setSelectedTech}
-                onPhoneChange={handlePhoneChange}
+                onImageChange={setImage}
+                onNameChange={setFullName}
               />
             </div>
 
@@ -159,7 +164,15 @@ export default function ClientFormWrapper({ data, tech }) {
 
         <div className="mt-10  lg:mt-16">
           {selectedService && selectedTech && selectedDate && selectedTime ? (
-            <Link onClick={handleSubmit} href="/checkout2" passHref>
+            <UserForm onPhoneChange={handlePhoneChange} />
+          ) : null}
+          {phone ? (
+            <Link
+              onClick={handleSubmit}
+              href="/checkout2"
+              passHref
+              className="ml-24"
+            >
               <MotionBtn>BOOK APPOINTMENT</MotionBtn>
             </Link>
           ) : null}

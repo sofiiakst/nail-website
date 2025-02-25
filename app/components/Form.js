@@ -3,7 +3,7 @@ export default async function Form({
   tech,
   onServiceChange,
   onTechChange,
-  onPhoneChange,
+  onImageChange,
 }) {
   return (
     <div>
@@ -36,19 +36,13 @@ export default async function Form({
         </div>
 
         <div className="space-y-4 space-x-4">
-          <label>Phone number:</label>
+          <label>Image reference (optional):</label>
+
           <input
-            required
-            type="tel"
-            placeholder="Phone number required "
-            onChange={(e) => {
-              const phone = e.target.value;
-              if (phone.length === 10) {
-                onPhoneChange(phone);
-                console.log("Phone:", phone);
-              }
-            }}
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
+            type="file"
+            accept="image/*"
+            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
+            onChange={(e) => onImageChange(e.target.files[0])} // Update the image file
           />
         </div>
 

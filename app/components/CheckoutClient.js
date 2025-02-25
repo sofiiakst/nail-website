@@ -31,6 +31,8 @@ export default function CheckoutClientComponent() {
   const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
   const techName = searchParams.get("techName") || "";
   const phone = searchParams.get("phone") || "";
+  const image = searchParams.get("image") || "";
+  const fullName=searchParams.get("fullName") || "";
 
   return (
     <Elements
@@ -48,6 +50,8 @@ export default function CheckoutClientComponent() {
         tech={techName}
         serviceName={serviceName}
         phone={phone}
+        image={image}
+        fullName={fullName}
       />
     </Elements>
   );
