@@ -9,13 +9,13 @@ export default function LoyaltyCardsPage() {
       {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row w-full">
         {/* Left Section */}
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <Reveal>
-            <h1 className="text-primary-950 text-3xl sm:text-5xl font-bold max-w-md">
+            <h1 className="text-primary-950 text-3xl text-center sm:text-start  sm:text-5xl font-bold max-w-md">
               Loyalty Card
             </h1>
           </Reveal>
-          <p className="text-primary-900 text-sm mr-16 text-md sm:text-xl max-w-md mt-11">
+          <p className="text-primary-900 text-sm text-md sm:text-xl max-w-screen-md mt-11">
             Οι loyalty cards αποτελούν ένα  πρόγραμμα  επιβράβευσης για την
             αφοσίωση και την προτίμηση των πελατών μας. Η ισχύς της κάρτας έχει
             διάρκεια 10 μήνες και ξεκινάει από την μέρα που θα υπάρξει η πρώτη
@@ -23,7 +23,7 @@ export default function LoyaltyCardsPage() {
             έχοντας μαζεψει και τις 7 σφραγίδες κερδίζετε 50% στην επόμενη
             επίσκεψη σας.
           </p>
-          <p className="text-primary-900 text-sm mr-16 text-md sm:text-xl max-w-md mt-11">
+          <p className="text-primary-900 text-sm text-md sm:text-xl max-w-md mt-11">
             * Σε περίπτωση απώλειας της κάρτας, δεν υπάρχει η δυνατότητα
             αντικατάστασής της με τον αντίστοιχο αριθμό σφραγίδων. Ο πελάτης
             μπορεί να ξεκινήσει μία νέα κάρτα επιβράβευσης αμέσως και έπειτα από

@@ -54,7 +54,7 @@ export default function TimeSelector({
 
           /*const hours = [...Array(11).keys()].map((hour) => hour + 10);*/ // 10 AM to 8 PM
           let startHour = 10;
-          let endHour = 22;
+          let endHour = 20;
           let hours = [];
           for (let hour = startHour; hour < endHour; hour += 2) {
             hours.push(hour);

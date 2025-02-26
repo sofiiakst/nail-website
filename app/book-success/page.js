@@ -3,7 +3,13 @@ import Link from "next/link";
 import MotionBtn from "../components/MotionBtn";
 import { revertToSuper } from "../lib/revertToSuper";
 import { useEffect } from "react";
-import { saveAppointment } from "../lib/dataServices";
+import {
+  saveAppointment,
+  updateAppointmentWithImage,
+  uploadImage,
+} from "../lib/dataServices";
+import { file } from "googleapis/build/src/apis/file";
+import convertBlobUrlToFile from "../lib/convertImageToFile";
 
 export default function Page({ searchParams }) {
   useEffect(() => {
@@ -14,10 +20,11 @@ export default function Page({ searchParams }) {
     const serviceName = searchParams?.serviceName;
     const phone = searchParams?.phone;
     const fullName = searchParams?.fullName;
+    const image = searchParams?.image;
 
     async function finalizeBooking() {
       try {
-        await saveAppointment({
+        const appId = await saveAppointment({
           userEmail: email,
           appointmentDate: appointmentDateTime,
           tech: tech,
@@ -26,10 +33,18 @@ export default function Page({ searchParams }) {
           phone: phone,
           fullName: fullName,
         });
+        let imageUrl = null;
+        if (file) {
+          const imageFile = await convertBlobUrlToFile(file);
+
+          imageUrl = await uploadImage(imageFile, appId);
+        }
+        if (imageUrl) {
+          await updateAppointmentWithImage(appId, imageUrl);
+        }
 
         await sendEmail(email, { appointmentDateTime, tech });
         console.log("Appointment saved and email sent!");
-        
       } catch (error) {
         console.error("Error finalizing booking:", error);
       }

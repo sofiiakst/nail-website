@@ -10,6 +10,7 @@ import TimeSelector from "./TimeSelector";
 import Spinner from "./Spinner";
 import { payUpfront } from "../lib/payUpfront";
 import UserForm from "./UserForm";
+import convertToBase64 from "../lib/convertToBase64";
 
 export default function ClientFormWrapper({ data, tech }) {
   const [selectedService, setSelectedService] = useState(null);

@@ -1,4 +1,5 @@
 import supabase from "./db";
+import { v4 as uuidv4 } from "uuid";
 export async function getMani() {
   try {
     const { data: mani, error } = await supabase.from("Mani").select("*");
@@ -188,4 +189,42 @@ export async function getAppointments(startOfTomorrow, endOfTomorrow) {
   }
 
   return appointments;
+}
+export async function uploadImage(file, appointmentId) {
+  if (!file || !appointmentId) return null;
+  const uuid = uuidv4();
+
+  const fileName = `${uuid}-${file.name}`; // Unique filename
+  const fileExtension = fileName.slice(fileName.lastIndexOf(".") + 1);
+  const filePath = `appointments/${appointmentId}/${uuidv4()}.${fileExtension}`; // Organized by appointment
+
+  const { data, error } = await supabase.storage
+    .from("nail-refs") // Your bucket name
+    .upload(filePath, file);
+
+  if (error) {
+    console.error("Error uploading image:", error.message);
+    return null;
+  }
+
+  // Get the public URL of the uploaded image
+  const { data: publicUrlData } = supabase.storage
+    .from("nail-refs")
+    .getPublicUrl(filePath);
+
+  return publicUrlData.publicUrl; // Return image URL
+}
+
+export async function updateAppointmentWithImage(appointmentId, imageUrl) {
+  const { error } = await supabase
+    .from("Appointments")
+    .update({ image: imageUrl }) // Store image URL
+    .eq("id", appointmentId); // Find the correct appointment
+
+  if (error) {
+    console.error("Error updating appointment with image:", error);
+    return null;
+  }
+
+  return true;
 }
