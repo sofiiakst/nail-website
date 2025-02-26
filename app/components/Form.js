@@ -1,4 +1,3 @@
-import { useRef } from "react";
 export default async function Form({
   data,
   tech,
@@ -6,7 +5,6 @@ export default async function Form({
   onTechChange,
   onImageChange,
 }) {
-  const imageInputRef = useRef(null);
   return (
     <div>
       <form
@@ -42,7 +40,6 @@ export default async function Form({
 
           <input
             type="file"
-            ref={imageInputRef}
             accept="image/*"
             className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
             onChange={(e) => onImageChange(e.target.files[0])} // Update the image file
