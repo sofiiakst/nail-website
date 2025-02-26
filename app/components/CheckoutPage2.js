@@ -91,7 +91,17 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `https://nail-website-demo.vercel.app/book-success?email=${email}&appointmentDateTime=${appointmentDateTime}&tech=${tech}&amount=${amount}&serviceName=${serviceName}&phone=${phone}&image=${image}&fullName=${fullName}`,
+          return_url: `https://nail-website-demo.vercel.app/book-success?email=${encodeURIComponent(
+            email
+          )}&appointmentDateTime=${encodeURIComponent(
+            appointmentDateTime
+          )}&tech=${encodeURIComponent(tech)}&amount=${encodeURIComponent(
+            amount
+          )}&serviceName=${encodeURIComponent(
+            serviceName
+          )}&phone=${encodeURIComponent(phone)}&image=${encodeURIComponent(
+            image
+          )}&fullName=${encodeURIComponent(fullName)}`,
         },
       });
 

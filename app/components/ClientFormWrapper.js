@@ -178,7 +178,7 @@ export default function ClientFormWrapper({ data, tech }) {
               onClick={handleSubmit}
               href="/checkout2"
               passHref
-              className="ml-24"
+              className="ml-10 "
             >
               <MotionBtn>BOOK APPOINTMENT</MotionBtn>
             </Link>
