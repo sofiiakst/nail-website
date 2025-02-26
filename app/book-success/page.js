@@ -8,7 +8,7 @@ import {
   updateAppointmentWithImage,
   uploadImage,
 } from "../lib/dataServices";
-import { file } from "googleapis/build/src/apis/file";
+
 import convertBlobUrlToFile from "../lib/convertImageToFile";
 
 export default function Page({ searchParams }) {
@@ -34,8 +34,8 @@ export default function Page({ searchParams }) {
           fullName: fullName,
         });
         let imageUrl = null;
-        if (file) {
-          const imageFile = await convertBlobUrlToFile(file);
+        if (image) {
+          const imageFile = await convertBlobUrlToFile(image);
 
           imageUrl = await uploadImage(imageFile, appId);
         }
