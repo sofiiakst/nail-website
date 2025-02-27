@@ -20,18 +20,26 @@ export default function ClientFormWrapper({ data, tech }) {
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneValid, setPhoneValid] = useState(false);
+  const [nameValid, setnameValid] = useState(false);
+
   const [fullName, setFullName] = useState("");
   const router = useRouter();
   const greekPhoneRegex = /^(69\d{8}|2\d{9})$/;
 
   function handlePhoneChange(phone) {
     setPhone(phone);
-    if (!greekPhoneRegex.test(phone)) {
-      alert("Invalid phone number!");
+
+    if (greekPhoneRegex.test(phone)) {
+      setPhoneValid(true);
     }
   }
   function handleNameChange(name) {
     setFullName(name);
+    setnameValid(true);
+    if (fullName.trim() !== "") {
+      setnameValid(false);
+    }
   }
 
   // Handle form submission
@@ -111,13 +119,22 @@ export default function ClientFormWrapper({ data, tech }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Greek Phone Number Format Validation
+    if (!greekPhoneRegex.test(phone)) {
+      alert("Please enter a valid phone number.");
+      return; // Prevent form submission
+    }
+
     if (
       selectedService &&
       phone &&
       fullName &&
       selectedTech &&
       selectedDate &&
-      selectedTime
+      selectedTime &&
+      nameValid &&
+      phoneValid
     ) {
       setSubmitStatus("submitting"); // Triggers useEffect to submit form
     } else {
@@ -126,6 +143,7 @@ export default function ClientFormWrapper({ data, tech }) {
       );
     }
   };
+  const isFormValid = nameValid && phoneValid;
 
   return (
     <>
@@ -167,19 +185,19 @@ export default function ClientFormWrapper({ data, tech }) {
           </Suspense>
         </div>
 
-        <div className="mt-10  lg:mt-16">
+        <div className="mt-10  lg:mt-16 sm:space-y-4 sm:flex sm:flex-col sm:items-center">
           {selectedService && selectedTech && selectedDate && selectedTime ? (
             <UserForm
               onPhoneChange={handlePhoneChange}
               onNameChange={handleNameChange}
             />
           ) : null}
-          {phone && fullName ? (
+          {isFormValid ? (
             <Link
               onClick={handleSubmit}
               href="/checkout2"
               passHref
-              className="ml-10 "
+              className="ml-11"
             >
               <MotionBtn>BOOK APPOINTMENT</MotionBtn>
             </Link>

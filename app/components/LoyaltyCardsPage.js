@@ -3,7 +3,7 @@ import Reveal from "./Words";
 
 export default function LoyaltyCardsPage() {
   return (
-    <main className="mt-11">
+    <main className="mt-11 notranslate">
       {/* Background Image */}
 
       {/* Content */}

@@ -6,7 +6,7 @@ import Reveal from "../components/Words";
 export default function Page() {
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center notranslate">
         <Reveal>
           <h1 className="text-primary-800 font-extrabold text-center text-5xl md:text-6xl ">
             Terms of service

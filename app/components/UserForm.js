@@ -12,7 +12,7 @@ export default function UserForm({ onPhoneChange, onNameChange }) {
   return (
     <div className="flex flex-col h-1/2">
       <form
-        className="lg:h-auto py-10 px-16 text-lg sm:text-xl flex gap-5 flex-col text-primary-900 mr-5 sm:mr-0"
+        className="lg:h-auto py-10 px-16 text-lg sm:text-xl flex gap-5 flex-col md:flex-row text-primary-900 mr-5 sm:mr-0"
         encType="multipart/form-data"
       >
         <div className="space-y-4 space-x-4">
