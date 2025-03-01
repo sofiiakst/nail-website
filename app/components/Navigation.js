@@ -1,12 +1,27 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../lib/auth";
 import Reveal from "./Words";
 
 export default function Navigation({ session }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    // Check on mount
+    handleResize();
+
+    // Add event listener for resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Function to toggle the menu
   const toggleMenu = () => {
@@ -81,7 +96,10 @@ export default function Navigation({ session }) {
 
       {/* Mobile menu toggle button */}
       <div className="md:hidden flex flex-col ">
-        <button onClick={toggleMenu} className="text-white focus:outline-none">
+        <button
+          onClick={toggleMenu}
+          className="text-primary-300 focus:outline-none"
+        >
           {!isOpen ? (
             <svg
               className="w-6 h-6"
@@ -116,13 +134,13 @@ export default function Navigation({ session }) {
 
       {/* Mobile navigation */}
       {isOpen && (
-        <div className=" md:hidden fle flex-col items-center gap-4 bg-white p-4 rounded-md w-screen h-screen">
+        <div className=" md:hidden fle flex-col items-center gap-4 bg-transparent p-4 rounded-md w-screen h-screen">
           <ul className="flex flex-col items-center gap-10 mt-5 ">
             <li>
               <Link
                 onClick={toggleMenu}
                 href="/giftcards"
-                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl notranslate"
+                className="hover:text-primary-800 transition-colors text-primary-300 focus:underline text-3xl notranslate"
               >
                 LOYALTY CARDS
               </Link>
@@ -131,7 +149,7 @@ export default function Navigation({ session }) {
               <Link
                 onClick={toggleMenu}
                 href="/contact"
-                className="hover:text-primary-400 transition-colors text-primary-700 focus:underline text-3xl notranslate"
+                className="hover:text-primary-800 transition-colors text-primary-300 focus:underline text-3xl notranslate"
               >
                 CONTACT US
               </Link>
@@ -148,7 +166,7 @@ export default function Navigation({ session }) {
                   alt="Instagram"
                   width={40}
                   height={40}
-                  className="hover:opacity-50"
+                  className="hover:opacity-20 icon"
                 />
               </a>
             </li>
@@ -159,7 +177,7 @@ export default function Navigation({ session }) {
                   alt="Email"
                   width={50}
                   height={50}
-                  className="hover:opacity-50"
+                  className="hover:opacity-20 icon"
                 />
               </a>
             </li>

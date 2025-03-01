@@ -107,3 +107,6 @@
   translate: no;
   -webkit-translate: no;
 }
+.icon {
+  filter: invert(80%) sepia(0%) saturate(0%) brightness(85%);
+}
