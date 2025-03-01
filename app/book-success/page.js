@@ -42,9 +42,6 @@ export default function Page({ searchParams }) {
         if (imageUrl) {
           await updateAppointmentWithImage(appId, imageUrl);
         }
-
-        await sendEmail(email, { appointmentDateTime, tech });
-        console.log("Appointment saved and email sent!");
       } catch (error) {
         console.error("Error finalizing booking:", error);
       }

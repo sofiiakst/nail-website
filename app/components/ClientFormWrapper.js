@@ -3,16 +3,15 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Form from "./Form"; // Import your existing server-side Form component
-import MotionBtn from "./MotionBtn";
-import Link from "next/link";
+
 import DateSelector from "./DateSelector";
 import TimeSelector from "./TimeSelector";
 import Spinner from "./Spinner";
 import { payUpfront } from "../lib/payUpfront";
 import UserForm from "./UserForm";
-import convertToBase64 from "../lib/convertToBase64";
 
 export default function ClientFormWrapper({ data, tech }) {
+  const [validated, setValidated] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const [selectedTech, setSelectedTech] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -20,26 +19,16 @@ export default function ClientFormWrapper({ data, tech }) {
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [image, setImage] = useState("");
   const [phone, setPhone] = useState("");
-  const [phoneValid, setPhoneValid] = useState(false);
-  const [nameValid, setnameValid] = useState(false);
-
   const [fullName, setFullName] = useState("");
   const router = useRouter();
   const greekPhoneRegex = /^(69\d{8}|2\d{9})$/;
 
   function handlePhoneChange(phone) {
     setPhone(phone);
-
-    if (greekPhoneRegex.test(phone)) {
-      setPhoneValid(true);
-    }
   }
+
   function handleNameChange(name) {
     setFullName(name);
-    setnameValid(true);
-    if (fullName.trim() !== "") {
-      setnameValid(false);
-    }
   }
 
   // Handle form submission
@@ -117,9 +106,7 @@ export default function ClientFormWrapper({ data, tech }) {
     }
   }, [submitStatus, selectedDate, selectedTime]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     // Greek Phone Number Format Validation
     if (!greekPhoneRegex.test(phone)) {
       alert("Please enter a valid phone number.");
@@ -132,18 +119,13 @@ export default function ClientFormWrapper({ data, tech }) {
       fullName &&
       selectedTech &&
       selectedDate &&
-      selectedTime &&
-      nameValid &&
-      phoneValid
+      selectedTime
     ) {
       setSubmitStatus("submitting"); // Triggers useEffect to submit form
     } else {
-      alert(
-        "Please provide phone number,full name, select a service, technician, date, and time."
-      );
+      alert("Παρακαλω εισαγετε εγκυρα στοιχεια.");
     }
   };
-  const isFormValid = nameValid && phoneValid;
 
   return (
     <>
@@ -185,22 +167,13 @@ export default function ClientFormWrapper({ data, tech }) {
           </Suspense>
         </div>
 
-        <div className="mt-10  lg:mt-16 sm:space-y-4 sm:flex sm:flex-col sm:items-center">
+        <div className="sm:space-y-4 sm:flex sm:flex-col sm:items-center">
           {selectedService && selectedTech && selectedDate && selectedTime ? (
             <UserForm
               onPhoneChange={handlePhoneChange}
               onNameChange={handleNameChange}
+              onButtonClick={handleSubmit}
             />
-          ) : null}
-          {isFormValid ? (
-            <Link
-              onClick={handleSubmit}
-              href="/checkout2"
-              passHref
-              className="ml-11"
-            >
-              <MotionBtn>BOOK APPOINTMENT</MotionBtn>
-            </Link>
           ) : null}
         </div>
       </div>
