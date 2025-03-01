@@ -81,7 +81,7 @@ export default function Navigation({ session }) {
 
       {/* Mobile menu toggle button */}
       <div className="md:hidden flex flex-col ">
-        <button onClick={toggleMenu} className="text-black focus:outline-none">
+        <button onClick={toggleMenu} className="text-white focus:outline-none">
           {!isOpen ? (
             <svg
               className="w-6 h-6"
