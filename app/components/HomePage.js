@@ -9,6 +9,8 @@ import bgMob4 from "@/public/bgMob4.png";
 
 import MotionBtn from "@/app/components/MotionBtn";
 import Reveal from "@/app/components/Words";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { TextGenerateEffectBlack } from "./ui/text-effect-black";
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -28,7 +30,7 @@ export default function HomePage() {
   }, []);
 
   const bg = isMobile ? bgMob5 : bgDesk;
-
+  const words = "Treat yourself,";
   return (
     <main className="mt-28 ">
       <Image
@@ -43,13 +45,13 @@ export default function HomePage() {
         <div className="relative z-10 text-center ">
           {isMobile ? (
             <h1 className="text-5xl sm:text-6xl text-primary-50 mb-24 tracking-tight sm:font-semibold notranslate  ">
-              Treat yourself,
+              <TextGenerateEffect words={words} />
               <br />
               today
             </h1>
           ) : (
-            <h1 className="text-5xl sm:text-6xl text-primary-950 mb-24 tracking-tight sm:font-semibold notranslate  ">
-              Treat yourself,
+            <h1 className="text-5xl  text-primary-950 mb-20 tracking-tight font-semibold notranslate  ">
+              <TextGenerateEffectBlack words={words} />
               <br />
               today
             </h1>

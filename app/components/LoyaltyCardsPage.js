@@ -1,7 +1,15 @@
 import ToggleButton from "@/app/components/ToggleButton";
 import Reveal from "./Words";
+import { TextGenerateSmall } from "./ui/text-generate-small";
 
 export default function LoyaltyCardsPage() {
+  const words1 = `Οι loyalty cards αποτελούν ένα  πρόγραμμα  επιβράβευσης για την
+  αφοσίωση και την προτίμηση των πελατών μας. Η ισχύς της κάρτας έχει
+  διάρκεια 10 μήνες και ξεκινάει από την μέρα που θα υπάρξει η πρώτη
+  σφραγίδα. Έπειτα από 7 συνεχόμενες επισκέψεις στο κατάστημα μας
+  έχοντας μαζεψει και τις 7 σφραγίδες κερδίζετε 50% στην επόμενη
+  επίσκεψη σας.`;
+
   return (
     <main className="mt-11 notranslate">
       {/* Background Image */}
@@ -15,14 +23,9 @@ export default function LoyaltyCardsPage() {
               Loyalty Card
             </h1>
           </Reveal>
-          <p className="text-primary-900 text-sm text-md sm:text-xl max-w-screen-md mt-11">
-            Οι loyalty cards αποτελούν ένα  πρόγραμμα  επιβράβευσης για την
-            αφοσίωση και την προτίμηση των πελατών μας. Η ισχύς της κάρτας έχει
-            διάρκεια 10 μήνες και ξεκινάει από την μέρα που θα υπάρξει η πρώτη
-            σφραγίδα. Έπειτα από 7 συνεχόμενες επισκέψεις στο κατάστημα μας
-            έχοντας μαζεψει και τις 7 σφραγίδες κερδίζετε 50% στην επόμενη
-            επίσκεψη σας.
-          </p>
+          <div className="text-primary-900 text-sm text-md sm:text-xl max-w-screen-md mt-11">
+            <TextGenerateSmall words={words1} />
+          </div>
           <p className="text-red-800 text-xs text-md sm:text-xl max-w-md mt-11">
             * Σε περίπτωση απώλειας της κάρτας, δεν υπάρχει η δυνατότητα
             αντικατάστασής της με τον αντίστοιχο αριθμό σφραγίδων. Ο πελάτης
