@@ -4,7 +4,7 @@ export const POST = async (req) => {
   console.log("Received request at /api/contact");
 
   try {
-    const { appointmentDateTime } = req.json();
+    const { appointmentDateTime } = await req.json();
     console.log("Appointment Date Received:", appointmentDateTime);
     const result = await sendEmail(appointmentDateTime);
     console.log("Email sent result:", result);

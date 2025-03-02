@@ -8,7 +8,18 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+const formatDate = (date) => {
+  const appointmentDate = new Date(date);
 
+  // Convert the UTC date to the local time zone before displaying
+  return appointmentDate.toUTCString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 export const sendEmail = async (appointmentDateTime) => {
   try {
     console.log(appointmentDateTime);
@@ -32,7 +43,9 @@ export const sendEmail = async (appointmentDateTime) => {
       from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
       to: session.user.email,
       subject: "Ευχαριστουμε για την προτιμηση σας!",
-      text: `Το ραντεβού σας προγραμματίστηκε για: ${appointmentDateTime}\n\n
+      text: `Το ραντεβού σας προγραμματίστηκε για: ${formatDate(
+        appointmentDateTime
+      )}\n\n
       *ΥΠΕΝΘΥΜΙΣΗ: Η προκαταβολή κρατείται σε περίπτωση ακύρωσης ραντεβού.`,
     };
     const result = await transporter.sendMail(mailOptions);
