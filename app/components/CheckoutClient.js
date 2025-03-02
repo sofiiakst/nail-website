@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutPage2 from "./CheckoutPage2";
@@ -12,40 +12,28 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 console.log(stripePromise);
 
-export default function CheckoutClientComponent() {
-  /*
-    const router = useRouter();
-
-  // Access query parameters from the URL
-  const { serviceName, servicePrice, techName, image } = router.query;
-
-  // Handle the amount conversion and Stripe setup
-  const amount = servicePrice ? convertToSub(servicePrice) : 0;
-  */
-  const searchParams = useSearchParams(); // Access query parameters
-
-  // Get query parameters safely
-  const serviceName = searchParams.get("serviceName") || "";
-  const servicePrice = searchParams.get("servicePrice") || "";
-  const amount = servicePrice ? convertToSub(servicePrice) : 1;
-  const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
-  const techName = searchParams.get("techName") || "";
-  const phone = searchParams.get("phone") || "";
-  const image = searchParams.get("image") || "";
-  const fullName=searchParams.get("fullName") || "";
-
+export default function CheckoutClientComponent({
+  serviceName,
+  servicePrice,
+  appointmentDateTime,
+  techName,
+  phone,
+  image,
+  fullName,
+}) {
+  console.log("from checkout client comp:", appointmentDateTime);
   return (
     <Elements
       stripe={stripePromise}
       options={{
         mode: "payment",
-        amount: amount,
+        amount: servicePrice,
         currency: "eur",
       }}
     >
       {/* Pass down amount and other details to the checkout component */}
       <CheckoutPage2
-        amount={amount}
+        amount={servicePrice}
         appointmentDateTime={appointmentDateTime}
         tech={techName}
         serviceName={serviceName}

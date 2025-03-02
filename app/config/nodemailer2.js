@@ -12,17 +12,7 @@ oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 export const sendEmail = async () => {
   try {
     const currentDate = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(currentDate.getDate() + 1);
-
-    // Normalize dates to UTC (if necessary) and remove time for comparison
-    const startOfTomorrow = new Date(
-      Date.UTC(tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate())
-    );
-    const endOfTomorrow = new Date(startOfTomorrow);
-    endOfTomorrow.setUTCDate(endOfTomorrow.getUTCDate() + 1);
-
-    const appointments = await getAppointments(startOfTomorrow, endOfTomorrow);
+    const appointments = await getAppointments(currentDate);
 
     if (appointments.length === 0) {
       console.log("No appointments found for tomorrow.");

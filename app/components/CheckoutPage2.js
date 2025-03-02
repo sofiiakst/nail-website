@@ -6,14 +6,10 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { convertToSub } from "../lib/convertToSub";
+
 import Spinner from "./Spinner";
 import { revertToSuper } from "../lib/revertToSuper";
-import {
-  deleteAppointment,
-  getAppointment,
-  saveAppointment,
-} from "../lib/dataServices";
+
 import { getUserEmail } from "../lib/getUserEmail";
 
 export default function CheckoutPage2({
@@ -63,12 +59,13 @@ export default function CheckoutPage2({
 
     try {
       console.log("Attempting to send email...");
+      console.log("Sending to API:", { appointmentDateTime });
       const emailResponse = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ appointmentDateTime, tech }),
+        body: JSON.stringify({ appointmentDateTime }),
       });
 
       console.log("Email response status:", emailResponse.status);

@@ -9,8 +9,9 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
-export const sendEmail = async () => {
+export const sendEmail = async (appointmentDateTime) => {
   try {
+    console.log(appointmentDateTime);
     const session = await auth();
     const accessToken = await oAuth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
@@ -30,8 +31,9 @@ export const sendEmail = async () => {
     const mailOptions = {
       from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
       to: session.user.email,
-      subject: "Thank you for choosing us!",
-      text: "ΥΠΕΝΘΥΜΙΣΗ: Η προκαταβολη κρατειται σε περιπτωση ακυρωσης ραντεβου.",
+      subject: "Ευχαριστουμε για την προτιμηση σας!",
+      text: `Το ραντεβού σας προγραμματίστηκε για: ${appointmentDateTime}\n\n
+      *ΥΠΕΝΘΥΜΙΣΗ: Η προκαταβολή κρατείται σε περίπτωση ακύρωσης ραντεβού.`,
     };
     const result = await transporter.sendMail(mailOptions);
     return result;
