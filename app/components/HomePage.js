@@ -50,7 +50,7 @@ export default function HomePage() {
               today
             </h1>
           ) : (
-            <h1 className="text-5xl  text-primary-950 mb-20 tracking-tight font-semibold notranslate  ">
+            <h1 className="text-6xl  text-primary-950 mb-20 tracking-tight font-bold notranslate  ">
               <TextGenerateEffectBlack words={words} />
               <br />
               today

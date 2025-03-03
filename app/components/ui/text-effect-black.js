@@ -46,9 +46,9 @@ export const TextGenerateEffectBlack = ({
   };
 
   return (
-    <div className={cn("font-semibold", className)}>
+    <div className={cn("font-bold", className)}>
       <div className="mt-11">
-        <div className=" text-5xl text-black  leading-snug tracking-tight notranslate">
+        <div className=" text-6xl text-black  leading-snug tracking-tight notranslate">
           {renderWords()}
         </div>
       </div>
