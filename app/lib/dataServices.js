@@ -194,8 +194,8 @@ export async function uploadImage(file, appointmentId) {
   const uuid = uuidv4();
 
   const fileName = `${uuid}-${file.name}`; // Unique filename
-  //const fileExtension = fileName.slice(fileName.lastIndexOf(".") + 1);
-  const fileExtension = file.name.split(".").pop();
+  const fileExtension = fileName.slice(fileName.lastIndexOf(".") + 1);
+
   const filePath = `appointments/${appointmentId}/${uuidv4()}.${fileExtension}`; // Organized by appointment
 
   const { data, error } = await supabase.storage

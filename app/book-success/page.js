@@ -35,7 +35,8 @@ export default function Page({ searchParams }) {
         });
         let imageUrl = null;
         if (image) {
-          const imageFile = await convertBlobUrlToFile(image);
+          const blobUrl = URL.createObjectURL(image);
+          const imageFile = await convertBlobUrlToFile(blobUrl);
 
           imageUrl = await uploadImage(imageFile, appId);
         }

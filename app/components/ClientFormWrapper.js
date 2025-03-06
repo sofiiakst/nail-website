@@ -16,7 +16,7 @@ export default function ClientFormWrapper({ data, tech }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [submitStatus, setSubmitStatus] = useState("idle");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [phone, setPhone] = useState("");
   const [fullName, setFullName] = useState("");
   const router = useRouter();
