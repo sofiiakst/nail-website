@@ -35,10 +35,7 @@ export default function Page({ searchParams }) {
         });
         let imageUrl = null;
         if (image) {
-          const blobUrl = URL.createObjectURL(image);
-          const imageFile = await convertBlobUrlToFile(blobUrl);
-
-          imageUrl = await uploadImage(imageFile, appId);
+          imageUrl = await uploadImage(image, appId);
         }
         if (imageUrl) {
           await updateAppointmentWithImage(appId, imageUrl);
