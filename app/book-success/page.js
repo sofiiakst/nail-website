@@ -59,7 +59,7 @@ export default function Page({ searchParams }) {
             We booked your appointment!
           </h1>
           <h2 className="text-primary-700 text-center mt-10 text-xl">
-            Your {amount2}$ payment was successful!
+            Your {amount2}€ payment was successful!
           </h2>
           <p className="text-sm text-primary-500 text-center mt-5">
             Note: Upfront charges wont get returned if the appointment gets

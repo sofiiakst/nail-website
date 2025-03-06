@@ -3,6 +3,7 @@ import {
   CalendarDaysIcon,
   HomeIcon,
   UserIcon,
+  n,
 } from "@heroicons/react/24/solid";
 import SignOutButton from "./SignOutButton";
 import Link from "next/link";

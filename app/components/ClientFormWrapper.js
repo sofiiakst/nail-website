@@ -11,7 +11,6 @@ import { payUpfront } from "../lib/payUpfront";
 import UserForm from "./UserForm";
 
 export default function ClientFormWrapper({ data, tech }) {
-  const [validated, setValidated] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const [selectedTech, setSelectedTech] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);

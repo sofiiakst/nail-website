@@ -1,4 +1,4 @@
-export default async function Form({
+export default function Form({
   data,
   tech,
   onServiceChange,
