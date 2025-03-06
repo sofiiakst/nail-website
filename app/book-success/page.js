@@ -24,6 +24,7 @@ export default function Page({ searchParams }) {
 
     async function finalizeBooking() {
       try {
+        // Save the appointment and get the appointment ID
         const appId = await saveAppointment({
           userEmail: email,
           appointmentDate: appointmentDateTime,
@@ -33,10 +34,19 @@ export default function Page({ searchParams }) {
           phone: phone,
           fullName: fullName,
         });
+
         let imageUrl = null;
+
+        // Check if an image exists
         if (image) {
-          imageUrl = await uploadImage(image, appId);
+          // Convert the image to a File object (if needed)
+          const imageFile = await convertBlobUrlToFile(image);
+
+          // Upload the image to Supabase and get the URL
+          imageUrl = await uploadImage(imageFile, appId);
         }
+
+        // If an image URL was generated, update the appointment with the image URL
         if (imageUrl) {
           await updateAppointmentWithImage(appId, imageUrl);
         }
@@ -45,6 +55,7 @@ export default function Page({ searchParams }) {
       }
     }
 
+    // Call the function (e.g., inside a useEffect)
     finalizeBooking();
   }, []);
   const amount = searchParams?.amount;
