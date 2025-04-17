@@ -50,7 +50,7 @@ export default function Navigation({ session }) {
             href="/contact"
             className="hover:text-primary-400 transition-colors text-primary-700 focus:underline notranslate"
           >
-            CONTACT US
+            ABOUT US
           </Link>
         </li>
         <li>
@@ -151,7 +151,7 @@ export default function Navigation({ session }) {
                 href="/contact"
                 className="hover:text-primary-800 transition-colors text-primary-300 focus:underline text-3xl notranslate"
               >
-                CONTACT US
+                ABOUT US
               </Link>
             </li>
             <li>

@@ -1,14 +1,59 @@
 import Link from "next/link";
 import Reveal from "../components/Words";
+import { TextGenerateSmall } from "../components/ui/text-generate-small";
 
 export const metadata = {
   title: "Contact us",
 };
 
 export default function Contact() {
+  const words1 = `Στο NAILTOPIA, κάθε πελάτης είναι μοναδικός και η φροντίδα του αποτελεί την απόλυτη προτεραιότητά μας. Κάθε επίσκεψη είναι μια ξεχωριστή εμπειρία, εστιασμένη στην εμπιστοσύνη, την ποιότητα και τον επαγγελματισμό. Εκτιμούμε την ευκαιρία να προσφέρουμε τις καλύτερες υπηρεσίες.
+Η φιλοσοφία μας βασίζεται στην ειλικρίνεια, τη διαφάνεια και την αφοσίωσή μας στην καλύτερη φροντίδα σας. Διασφαλίζουμε αυστηρά πρότυπα υγιεινής και ασφάλειας χρησιμοποιώντας πιστοποιημένα προϊόντα και σύγχρονες τεχνικές, ενώ οι τιμές μας αντικατοπτρίζουν την υψηλή ποιότητα των υπηρεσιών μας, πάντα προσαρμοσμένες στις ανάγκες σας.
+  Η σχέση μας με εσάς βασίζεται στην εμπιστοσύνη και το σεβασμό, διασφαλίζοντας ότι η φροντίδα σας βρίσκεται πάντα στα καλύτερα χέρια.
+  `;
+
   return (
     <div className="flex flex-col items-center  min-h-screen overflow-auto">
-      <div className="flex flex-col">
+      <Reveal>
+        <h1 className="text-primary-950 text-xl text-center sm:text-start  sm:text-2xl font-bold max-w-screen-md">
+          Γιατί να επιλέξετε το κατάστημά μας
+        </h1>
+      </Reveal>
+      <div className="text-primary-900  text-md sm:text-3xl max-w-screen-md mt-11">
+        <TextGenerateSmall words={words1} />
+      </div>
+      <div className="mt-8 flex flex-col ">
+        <h2 className="text-primary-900 text-3xl sm:text-4xl text-center">
+          Contact us
+        </h2>
+        <h3 className="mt-4 max-w-md text-primary-700">
+          Για οποιεσδήποτε πληροφορίες, μπορείτε να μας βρείτε στα παρακάτω
+          στοιχεία:
+        </h3>
+
+        <p className=" text-primary-900 text-md font-extrabold mt-2">
+          Τηλέφωνο:
+        </p>
+        <p className=" text-primary-900 text-md font-extrabold mt-2">Email:</p>
+        <h4 className=" text-primary-700 mt-2">
+          Επισκεφτείτε μας επίσης στα κοινωνικά δίκτυα:
+        </h4>
+        <p className=" text-primary-900 text-md font-extrabold mt-2">
+          Instagram:
+        </p>
+        <p className=" text-primary-900 text-md font-extrabold mt-2">
+          Tik tok:
+        </p>
+        <p className=" text-primary-900 text-md font-extrabold mt-2">
+          Facebook:
+        </p>
+        <p className="text-red-800 mt-5 max-w-md">
+          *Τα ραντεβού κλείνονται αποκλειστικά μέσω της ιστοσελίδας μας. Δεν
+          δέχονται ραντεβού μέσω τηλεφώνου ή άλλων μέσων. Μπορείτε να βρείτε την
+          τοποθεσία μας στον χάρτη παρακάτω.
+        </p>
+      </div>
+      <div className="flex flex-col mt-10">
         <h1 className="text-primary-900 font-bold ml-28 sm:ml-0 sm:text-xl mt-10 lg:mt-0">
           VISIT THE NAIL SPA
         </h1>
