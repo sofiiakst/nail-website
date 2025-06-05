@@ -21,8 +21,8 @@ export default function Page({ searchParams }) {
     const phone = searchParams?.phone;
     const fullName = searchParams?.fullName;
 
-    const totalServicePrice = searchParams?.totalServicePrice;
-    const extrasPrice = searchParams?.extrasPrice;
+    const totalServicePrice = Number(searchParams?.totalServicePrice) || 0;
+    const extrasPrice = Number(searchParams?.extrasPrice) || 0;
     const total = totalServicePrice + extrasPrice;
 
     async function finalizeBooking() {
@@ -38,22 +38,6 @@ export default function Page({ searchParams }) {
           fullName: fullName,
           totalAmount: total,
         });
-
-        let imageUrl = null;
-
-        // Check if an image exists
-        if (image) {
-          // Convert the image to a File object (if needed)
-          const imageFile = await convertBlobUrlToFile(image);
-
-          // Upload the image to Supabase and get the URL
-          imageUrl = await uploadImage(imageFile, appId);
-        }
-
-        // If an image URL was generated, update the appointment with the image URL
-        if (imageUrl) {
-          await updateAppointmentWithImage(appId, imageUrl);
-        }
       } catch (error) {
         console.error("Error finalizing booking:", error);
       }
