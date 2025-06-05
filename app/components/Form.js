@@ -47,7 +47,7 @@ export default function Form({
                 onExtraChange(extras); // Call handler to update parent state
               }}
             >
-              <option value="">Select extra's...</option>
+              <option value="">Select extra...</option>
               {extras?.map((extras) => (
                 <option
                   className="notranslate"
