@@ -22,6 +22,17 @@ export async function getLashes() {
   }
 }
 
+export async function getExtras() {
+  try {
+    const { data: extras, error } = await supabase.from("Extras").select("*");
+    if (error) throw error;
+    return extras;
+  } catch (error) {
+    console.error("Error fetching extras:", error);
+    return [];
+  }
+}
+
 export async function getBrows() {
   try {
     const { data: brows, error } = await supabase.from("Brows").select("*");

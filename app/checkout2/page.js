@@ -13,6 +13,8 @@ export default function Page() {
   // Get query parameters safely
   const serviceName = searchParams.get("serviceName") || "";
   const servicePrice = searchParams.get("servicePrice") || "";
+  const totalServicePrice = searchParams.get("totalServicePrice") || "";
+  const extrasPrice = searchParams.get("extrasPrice") || "";
   const amount = servicePrice ? convertToSub(servicePrice) : 1;
   const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
   console.log("from checkout2 page:", appointmentDateTime);
@@ -31,6 +33,8 @@ export default function Page() {
         phone={phone}
         image={image}
         fullName={fullName}
+        totalServicePrice={totalServicePrice}
+        extrasPrice={extrasPrice}
       />
     </div>
   );

@@ -1,9 +1,11 @@
 export default function Form({
+  extras,
+  datatype,
   data,
   tech,
   onServiceChange,
+  onExtraChange,
   onTechChange,
-  onImageChange,
 }) {
   return (
     <div>
@@ -34,18 +36,34 @@ export default function Form({
             ))}
           </select>
         </div>
-
-        <div className="space-y-4 space-x-4">
-          <label>Image reference (optional):</label>
-
-          <input
-            type="file"
-            accept="image/*"
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-full"
-            onChange={(e) => onImageChange(e.target.files[0])} // Update the image file
-          />
-        </div>
-
+        {(datatype == "mani" || datatype == "pedi") && (
+          <div className="space-y-4 space-x-4">
+            <label>Extra (optional):</label>
+            <select
+              required
+              className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
+              onChange={(e) => {
+                const extras = JSON.parse(e.target.value); // Parse the service
+                onExtraChange(extras); // Call handler to update parent state
+              }}
+            >
+              <option value="">Select extra's...</option>
+              {extras?.map((extras) => (
+                <option
+                  className="notranslate"
+                  value={JSON.stringify(extras)}
+                  key={extras.name}
+                >
+                  {extras.name} , {extras.price}€
+                </option>
+              ))}
+            </select>
+            <p className="text-primary-800 font-thin">
+              {" "}
+              *Charms:1€ το καθενα και ζητειται την ωρα της υπηρεσιας{" "}
+            </p>
+          </div>
+        )}
         {/* Technician selection */}
         <div className="space-y-4 space-x-4">
           <label>Select the technician:</label>

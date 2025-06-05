@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import ClientFormWrapper from "../components/ClientFormWrapper";
 
-import { getPedi, getTech } from "../lib/dataServices";
+import { getExtras, getPedi, getTech } from "../lib/dataServices";
 import Spinner from "../components/Spinner";
 export const metadata = {
   title: "Pedicures",
@@ -10,6 +10,8 @@ export const metadata = {
 export default async function Page() {
   const pedi = await getPedi();
   const tech = await getTech();
+  const datatype = "pedi";
+  const extras = await getExtras();
   /*
   return (
     <div className="h-auto flex flex-col lg:flex-row border border-primary-200 text-accent-400 lg:h-screen bg-primary-100">
@@ -28,7 +30,13 @@ export default async function Page() {
   */
   return (
     <Suspense fallback={<Spinner />}>
-      <ClientFormWrapper data={pedi} tech={tech} />;
+      <ClientFormWrapper
+        extras={extras}
+        datatype={datatype}
+        data={pedi}
+        tech={tech}
+      />
+      ;
     </Suspense>
   );
 }

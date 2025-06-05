@@ -20,7 +20,10 @@ export default function Page({ searchParams }) {
     const serviceName = searchParams?.serviceName;
     const phone = searchParams?.phone;
     const fullName = searchParams?.fullName;
-    const image = searchParams?.image;
+
+    const totalServicePrice = searchParams?.totalServicePrice;
+    const extrasPrice = searchParams?.extrasPrice;
+    const total = totalServicePrice + extrasPrice;
 
     async function finalizeBooking() {
       try {
@@ -33,6 +36,7 @@ export default function Page({ searchParams }) {
           serviceName: serviceName,
           phone: phone,
           fullName: fullName,
+          totalAmount: total,
         });
 
         let imageUrl = null;

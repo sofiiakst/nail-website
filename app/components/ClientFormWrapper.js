@@ -10,8 +10,9 @@ import Spinner from "./Spinner";
 import { payUpfront } from "../lib/payUpfront";
 import UserForm from "./UserForm";
 
-export default function ClientFormWrapper({ data, tech }) {
+export default function ClientFormWrapper({ extras, datatype, data, tech }) {
   const [selectedService, setSelectedService] = useState(null);
+  const [selectedExtra, setSelectedExtra] = useState(null);
   const [selectedTech, setSelectedTech] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -80,6 +81,8 @@ export default function ClientFormWrapper({ data, tech }) {
             const query = new URLSearchParams({
               serviceName: selectedService.name,
               servicePrice: payUpfront(selectedService.price),
+              extrasPrice: selectedExtra.price,
+              totalServicePrice: selectedService.price,
               techName: selectedTech.name,
               phone: phone,
               image: image ? image.name : "",
@@ -133,9 +136,12 @@ export default function ClientFormWrapper({ data, tech }) {
           <Suspense fallback={<Spinner />}>
             <div className="flex flex-col h-1/2">
               <Form
+                datatype={datatype}
                 data={data}
                 tech={tech}
+                extras={extras}
                 onServiceChange={setSelectedService}
+                onExtraChange={setSelectedExtra}
                 onTechChange={setSelectedTech}
                 onImageChange={setImage}
                 onNameChange={setFullName}

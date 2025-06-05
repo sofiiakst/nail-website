@@ -20,6 +20,8 @@ export default function CheckoutPage2({
   phone,
   image,
   fullName,
+  totalServicePrice,
+  extrasPrice,
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -98,7 +100,11 @@ export default function CheckoutPage2({
             serviceName
           )}&phone=${encodeURIComponent(phone)}&image=${encodeURIComponent(
             image
-          )}&fullName=${encodeURIComponent(fullName)}`,
+          )}&fullName=${encodeURIComponent(
+            fullName
+          )}&totalServicePrice=${encodeURIComponent(
+            totalServicePrice
+          )}&extrasPrice=${encodeURIComponent(extrasPrice)}`,
         },
       });
 

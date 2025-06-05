@@ -20,6 +20,8 @@ export default function CheckoutClientComponent({
   phone,
   image,
   fullName,
+  totalServicePrice,
+  extrasPrice,
 }) {
   console.log("from checkout client comp:", appointmentDateTime);
   return (
@@ -40,6 +42,8 @@ export default function CheckoutClientComponent({
         phone={phone}
         image={image}
         fullName={fullName}
+        totalServicePrice={totalServicePrice}
+        extrasPrice={extrasPrice}
       />
     </Elements>
   );

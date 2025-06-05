@@ -1,4 +1,4 @@
-import { getMani, getTech } from "../lib/dataServices";
+import { getExtras, getMani, getTech } from "../lib/dataServices";
 import ClientFormWrapper from "../components/ClientFormWrapper";
 import { Suspense } from "react";
 import Spinner from "../components/Spinner";
@@ -10,6 +10,8 @@ export const metadata = {
 export default async function Page() {
   const mani = await getMani();
   const tech = await getTech();
+  const datatype = "mani";
+  const extras = await getExtras();
   /*
   return (
     <>
@@ -32,7 +34,12 @@ export default async function Page() {
   */
   return (
     <Suspense fallback={<Spinner />}>
-      <ClientFormWrapper data={mani} tech={tech} />
+      <ClientFormWrapper
+        extras={extras}
+        datatype={datatype}
+        data={mani}
+        tech={tech}
+      />
     </Suspense>
   );
 }

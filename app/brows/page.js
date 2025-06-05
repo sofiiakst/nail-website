@@ -1,4 +1,4 @@
-import { getBrows, getTech } from "../lib/dataServices";
+import { getBrows, getExtras, getTech } from "../lib/dataServices";
 import ClientFormWrapper from "../components/ClientFormWrapper";
 import { Suspense } from "react";
 import Spinner from "../components/Spinner";
@@ -14,10 +14,17 @@ export default async function Page() {
   });
 
   const tech = await getTech();
+  const datatype = "brows";
+  const extras = await getExtras();
 
   return (
     <Suspense fallback={<Spinner />}>
-      <ClientFormWrapper data={brows} tech={tech} />
+      <ClientFormWrapper
+        extras={extras}
+        datatype={datatype}
+        data={brows}
+        tech={tech}
+      />
     </Suspense>
   );
 }
