@@ -81,7 +81,7 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
             const query = new URLSearchParams({
               serviceName: selectedService.name,
               servicePrice: payUpfront(selectedService.price),
-              extrasPrice: selectedExtra.price,
+              extrasPrice: selectedExtra?.price || 0,
               totalServicePrice: selectedService.price,
               techName: selectedTech.name,
               phone: phone,
