@@ -40,7 +40,6 @@ export default function Form({
           <div className="space-y-4 space-x-4">
             <label>Extra (optional):</label>
             <select
-              required
               className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
               onChange={(e) => {
                 const extras = JSON.parse(e.target.value); // Parse the service

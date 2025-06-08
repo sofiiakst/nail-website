@@ -32,21 +32,16 @@ export default function Contact() {
         </h3>
 
         <p className=" text-primary-900 text-md font-extrabold mt-2">
-          Τηλέφωνο:
+          Τηλέφωνο: <span className=" text-primary-700">2104186806</span>
         </p>
-        <p className=" text-primary-900 text-md font-extrabold mt-2">Email:</p>
+
         <h4 className=" text-primary-700 mt-2">
           Επισκεφτείτε μας επίσης στα κοινωνικά δίκτυα:
         </h4>
         <p className=" text-primary-900 text-md font-extrabold mt-2">
-          Instagram:
+          Instagram: <span className=" text-primary-700">nailtopia_m</span>
         </p>
-        <p className=" text-primary-900 text-md font-extrabold mt-2">
-          Tik tok:
-        </p>
-        <p className=" text-primary-900 text-md font-extrabold mt-2">
-          Facebook:
-        </p>
+
         <p className="text-red-800 mt-5 max-w-md">
           *Τα ραντεβού κλείνονται αποκλειστικά μέσω της ιστοσελίδας μας. Δεν
           δέχονται ραντεβού μέσω τηλεφώνου ή άλλων μέσων. Μπορείτε να βρείτε την
