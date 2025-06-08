@@ -90,7 +90,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `https://nail-website-demo.vercel.app/book-success?email=${encodeURIComponent(
+          return_url: `https://nail-topia.com/book-success?email=${encodeURIComponent(
             email
           )}&appointmentDateTime=${encodeURIComponent(
             appointmentDateTime
