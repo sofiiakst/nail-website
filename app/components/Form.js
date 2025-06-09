@@ -59,7 +59,7 @@ export default function Form({
             </select>
             <p className="text-primary-800 font-thin">
               {" "}
-              *Charms:1€ το καθενα και ζητειται την ωρα της υπηρεσιας{" "}
+              *Charms και 3D σχεδια: 1€ το καθενα
             </p>
           </div>
         )}
