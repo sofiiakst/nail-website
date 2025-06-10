@@ -9,7 +9,8 @@ export async function GET(request) {
   }
 
   try {
-    await sendEmail(); // Trigger the email function
+    await sendEmail();
+    console.log("Cron job started at", new Date()); // Trigger the email function
     return new Response(
       JSON.stringify({ success: true, message: "Emails sent." }),
       {

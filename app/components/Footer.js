@@ -12,7 +12,7 @@ export default function Footer() {
         <h1 className="text-2xl font-bold text-primary-950">Hours:</h1>
         <p className=" text-primary-950">Monday - Friday 10am–8pm</p>
         <h2 className="text-2xl font-bold  text-primary-950">Email:</h2>
-        <p className=" text-primary-950"> contact@nailtopia.com</p>
+        <p className=" text-primary-950"> nail.topia.auto.com</p>
         <div className="flex flex-row space-x-3 ">
           <a
             href="https://www.instagram.com/nailtopia_m?igsh=b3NwdTNqbzEyZ2tm"
@@ -29,7 +29,7 @@ export default function Footer() {
               className="hover:opacity-50" // Optional hover effect
             />
           </a>
-          
+
           <a
             href="mailto:nail.topia.auto@gmail.com" // Replace with the desired email address
             aria-label="Send Email"
@@ -42,7 +42,6 @@ export default function Footer() {
               className="hover:opacity-50 "
             />
           </a>
-          
         </div>
       </div>
     </footer>
