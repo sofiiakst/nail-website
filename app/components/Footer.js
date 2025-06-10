@@ -29,8 +29,9 @@ export default function Footer() {
               className="hover:opacity-50" // Optional hover effect
             />
           </a>
+          
           <a
-            href="mailto:contact@nailtopia.com" // Replace with the desired email address
+            href="mailto:nail.topia.auto@gmail.com" // Replace with the desired email address
             aria-label="Send Email"
           >
             <Image
@@ -41,6 +42,7 @@ export default function Footer() {
               className="hover:opacity-50 "
             />
           </a>
+          
         </div>
       </div>
     </footer>
