@@ -189,7 +189,7 @@ export async function deleteAppointment(id) {
 }
 export async function getAppointments(current) {
   const { data: appointments, error } = await supabase
-    .from("appointments") // Replace with your table name
+    .from("Appointments") // Replace with your table name
     .select("*")
     .eq("appointmentDate", current.toISOString()); // Greater or equal to the start of tomorrow
 
