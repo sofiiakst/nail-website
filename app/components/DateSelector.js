@@ -18,7 +18,7 @@ export default function DateSelector({ onSelectDate }) {
       <DayPicker
         required
         disabled={(date) =>
-          isPast(date) || date.getDay() === 0 || date.getDay() === 6
+          isPast(date) || date.getDay() === 0 || date.getDay() === 1
         }
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
