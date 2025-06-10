@@ -35,13 +35,7 @@ export const sendEmail = async () => {
     });
 
     for (const appointment of appointments) {
-      const formattedDate = appointment.appointmentDate.toUTCString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
+      const formattedDate = new Date(appointment.appointmentDate).toUTCString();
 
       const mailOptions = {
         from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
