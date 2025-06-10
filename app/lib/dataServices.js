@@ -188,10 +188,18 @@ export async function deleteAppointment(id) {
   return { data, error };
 }
 export async function getAppointments(current) {
+  const start = new Date(current);
+  start.setDate(start.getDate() + 1);
+  start.setHours(0, 0, 0, 0); // Tomorrow at 00:00:00
+
+  const end = new Date(start);
+  end.setHours(23, 59, 59, 999);
+
   const { data: appointments, error } = await supabase
     .from("Appointments") // Replace with your table name
     .select("*")
-    .eq("appointmentDate", current.toISOString()); // Greater or equal to the start of tomorrow
+    .gte("appointmentDate", start.toISOString())
+    .lte("appointmentDate", end.toISOString()); // Greater or equal to the start of tomorrow
 
   if (error) {
     console.error("Error fetching appointments:", error);
