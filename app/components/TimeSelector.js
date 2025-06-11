@@ -68,11 +68,19 @@ export default function TimeSelector({
           // Filter hours for the selected day
           const filteredHours = hours.filter((hour) => {
             return !occupiedHoursAndDays.some((occupied) => {
+              const occupiedDayUTC = normalizeToUTC(
+                new Date(
+                  Date.UTC(
+                    selectedDate.getFullYear(),
+                    selectedDate.getMonth(),
+                    occupied.day
+                  )
+                )
+              );
+
               return (
-                selectedDate.getUTCFullYear() === occupied.year &&
-                selectedDate.getUTCMonth() === occupied.month &&
-                selectedDate.getUTCDate() === occupied.day &&
-                hour === occupied.hour
+                selectedDayUTC.getTime() === occupiedDayUTC.getTime() && // Compare normalized dates
+                occupied.hour === hour // Check the hour
               );
             });
           });
