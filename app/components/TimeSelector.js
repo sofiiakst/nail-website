@@ -32,9 +32,7 @@ export default function TimeSelector({
           const utcDate = new Date(appointment.appointmentDate);
 
           return {
-            year: utcDate.getUTCFullYear(),
-            month: utcDate.getUTCMonth(),
-            day: utcDate.getUTCDate(), // Use UTC date
+            dateString: utcDate.toISOString().split("T")[0], // e.g., '2025-07-05'
             hour: utcDate.getUTCHours(), // Use UTC hour
           };
         });
@@ -52,7 +50,14 @@ export default function TimeSelector({
           }
 
           // Normalize selectedDate to UTC
-          const selectedDayUTC = normalizeToUTC(selectedDate);
+          const selectedDayUTC = new Date(
+            Date.UTC(
+              selectedDate.getFullYear(),
+              selectedDate.getMonth(),
+              selectedDate.getDate()
+            )
+          );
+          const selectedDateString = selectedDayUTC.toISOString().split("T")[0];
 
           /*const hours = [...Array(11).keys()].map((hour) => hour + 10);*/ // 10 AM to 8 PM
           let startHour = 10;
@@ -67,22 +72,11 @@ export default function TimeSelector({
           }
           // Filter hours for the selected day
           const filteredHours = hours.filter((hour) => {
-            return !occupiedHoursAndDays.some((occupied) => {
-              const occupiedDayUTC = normalizeToUTC(
-                new Date(
-                  Date.UTC(
-                    selectedDate.getFullYear(),
-                    selectedDate.getMonth(),
-                    occupied.day
-                  )
-                )
-              );
-
-              return (
-                selectedDayUTC.getTime() === occupiedDayUTC.getTime() && // Compare normalized dates
-                occupied.hour === hour // Check the hour
-              );
-            });
+            return !occupiedHoursAndDays.some(
+              (occupied) =>
+                occupied.dateString === selectedDateString &&
+                occupied.hour === hour
+            );
           });
 
           setAvailableHours(filteredHours);
