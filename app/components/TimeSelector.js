@@ -32,6 +32,8 @@ export default function TimeSelector({
           const utcDate = new Date(appointment.appointmentDate);
 
           return {
+            year: utcDate.getUTCFullYear(),
+            month: utcDate.getUTCMonth(),
             day: utcDate.getUTCDate(), // Use UTC date
             hour: utcDate.getUTCHours(), // Use UTC hour
           };
@@ -66,20 +68,11 @@ export default function TimeSelector({
           // Filter hours for the selected day
           const filteredHours = hours.filter((hour) => {
             return !occupiedHoursAndDays.some((occupied) => {
-              // Create a Date object for the occupied day
-              const occupiedDayUTC = normalizeToUTC(
-                new Date(
-                  Date.UTC(
-                    selectedDate.getFullYear(),
-                    selectedDate.getMonth(),
-                    occupied.day
-                  )
-                )
-              );
-
               return (
-                selectedDayUTC.getTime() === occupiedDayUTC.getTime() && // Compare normalized dates
-                occupied.hour === hour // Check the hour
+                selectedDate.getUTCFullYear() === occupied.year &&
+                selectedDate.getUTCMonth() === occupied.month &&
+                selectedDate.getUTCDate() === occupied.day &&
+                hour === occupied.hour
               );
             });
           });
