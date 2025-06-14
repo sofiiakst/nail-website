@@ -17,9 +17,15 @@ export default function DateSelector({ onSelectDate }) {
     <div className="flex flex-col justify-between ">
       <DayPicker
         required
-        disabled={(date) =>
-          isPast(date) || date.getDay() === 0 || date.getDay() === 1
-        }
+        disabled={(date) => {
+          const isBeforeToday = isPast(date);
+          const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
+          const start = new Date(date.getFullYear(), 7, 9);
+          const end = new Date(date.getFullYear(), 7, 26);
+          const isInDisabledRange = date >= start && date <= end;
+
+          return isBeforeToday || isSundayOrMonday || isInDisabledRange;
+        }}
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
           day: {
