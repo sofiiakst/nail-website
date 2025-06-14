@@ -10,7 +10,9 @@ export default function Footer() {
       {/* Footer content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center space-y-4">
         <h1 className="text-2xl font-bold text-primary-950">Hours:</h1>
-        <p className=" text-primary-950">Monday - Friday 10am–8pm</p>
+        <p className=" text-primary-950">
+          Tuesday - Friday 10am–8pm , Saturday 10am-6pm
+        </p>
         <h2 className="text-2xl font-bold  text-primary-950">Email:</h2>
         <p className=" text-primary-950"> nail.topia.auto.com</p>
         <div className="flex flex-row space-x-3 ">
