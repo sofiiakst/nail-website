@@ -20,8 +20,8 @@ export default function DateSelector({ onSelectDate }) {
         disabled={(date) => {
           const isBeforeToday = isPast(date);
           const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
-          const start = new Date(date.getFullYear(), 7, 9);
-          const end = new Date(date.getFullYear(), 7, 26);
+          const start = new Date(date.getFullYear(), 7, 10);
+          const end = new Date(date.getFullYear(), 7, 25);
           const isInDisabledRange = date >= start && date <= end;
 
           return isBeforeToday || isSundayOrMonday || isInDisabledRange;
