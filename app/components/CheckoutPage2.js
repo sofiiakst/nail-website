@@ -61,7 +61,17 @@ export default function CheckoutPage2({
 
     try {
       console.log("Attempting to send email...");
-      console.log("Sending to API:", { appointmentDateTime });
+      console.log("Sending to API:", {
+        amount,
+        appointmentDateTime,
+        tech,
+        serviceName,
+        phone,
+        image,
+        fullName,
+        totalServicePrice,
+        extrasPrice,
+      });
       const emailResponse = await fetch("/api/contact", {
         method: "POST",
         headers: {
