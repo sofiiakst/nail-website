@@ -17,7 +17,7 @@ export default function Page() {
       }}
     >
       <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-        We're making changes
+        Making changes...
       </h1>
       <p style={{ fontSize: "1.25rem" }}>
         Our site is currently under renovation — check back soon!
