@@ -33,21 +33,25 @@ export default function MyAppointments({ apps }) {
   };
 
   return (
+    /*
     <div className="">
       <h1 className="text-primary-800 font-semibold text-xl md:text-3xl md:ml-10">
         Upcoming Appointments
       </h1>
+      
       {upcomingAppointments.length === 0 ? (
         <div className="flex flex-col">
           <h2 className="text-primary-700 md:ml-10 mt-10 text-lg">
             No upcoming appointments.
           </h2>
+          
           <Link
             href="/serv"
             className="text-primary-500 mt-4 md:ml-10 underline text-lg"
           >
             Book appointment
           </Link>
+          
         </div>
       ) : (
         <ul className="md:ml-10 mt-10">
@@ -62,5 +66,9 @@ export default function MyAppointments({ apps }) {
         </ul>
       )}
     </div>
+    */
+    <h2 className="text-primary-700 md:ml-10 mt-10 text-lg">
+      No upcoming appointments.
+    </h2>
   );
 }
