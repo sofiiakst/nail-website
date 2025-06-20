@@ -86,7 +86,17 @@ export default function CheckoutPage2({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ appointmentDateTime }),
+        body: JSON.stringify({
+          amount,
+          appointmentDateTime,
+          tech,
+          serviceName,
+          phone,
+          image,
+          fullName,
+          totalServicePrice,
+          extrasPrice,
+        }),
       });
 
       console.log("Email response status:", emailResponse.status);
