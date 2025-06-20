@@ -49,7 +49,16 @@ export default function CheckoutPage2({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: amount }),
+      body: JSON.stringify({
+        amount: amount,
+        appointmentDateTime: appointmentDateTime,
+        tech: tech,
+        serviceName: serviceName,
+        phone: phone,
+        fullName: fullName,
+        totalServicePrice: totalServicePrice,
+        extrasPrice: extrasPrice,
+      }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
