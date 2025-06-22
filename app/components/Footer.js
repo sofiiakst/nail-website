@@ -33,7 +33,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="mailto:nail.topia.auto@gmail.com" // Replace with the desired email address
+            href="mariath0411@gmail.com" // Replace with the desired email address
             aria-label="Send Email"
           >
             <Image
