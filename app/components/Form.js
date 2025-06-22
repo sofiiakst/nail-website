@@ -64,7 +64,7 @@ export default function Form({
           </div>
         )}
         {/* Technician selection */}
-        {datatype == "mani" ? (
+        {datatype == "mani" || datatype == "pedi" ? (
           <div className="space-y-4 space-x-4">
             <label>Select the technician:</label>
             <select
