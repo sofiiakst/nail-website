@@ -60,16 +60,39 @@ export default function TimeSelector({
           const selectedDateString = selectedDayUTC.toISOString().split("T")[0];
 
           /*const hours = [...Array(11).keys()].map((hour) => hour + 10);*/ // 10 AM to 8 PM
-          let startHour = 10;
-          let endHour = 20;
-          if (selectedDate.getDay() === 6) {
-            endHour = 18;
+
+          let startHour;
+          let endHour;
+          const day = selectedDate.getDay(); // 0 = Sunday, ..., 6 = Saturday
+
+          if (selectedTech.name === "Maria") {
+            if (day >= 2 && day <= 5) {
+              // Tuesday to Friday
+              startHour = 10;
+              endHour = 20;
+            } else if (day === 6) {
+              // Saturday
+              startHour = 10;
+              endHour = 18;
+            }
+          } else if (selectedTech.name === "Kostas") {
+            if (day >= 2 && day <= 5) {
+              // Tuesday to Friday
+              startHour = 16;
+              endHour = 20;
+            } else if (day === 6) {
+              // Saturday
+              startHour = 12;
+              endHour = 16;
+            }
           }
 
           let hours = [];
+
           for (let hour = startHour; hour < endHour; hour += 2) {
             hours.push(hour);
           }
+
           // Filter hours for the selected day
           const filteredHours = hours.filter((hour) => {
             return !occupiedHoursAndDays.some(
@@ -110,9 +133,16 @@ export default function TimeSelector({
         className="text-primary-500 w-1/2 px-5 py-3 bg-primary-50 shadow-sm rounded-md "
         onChange={handleTimeSelect}
       >
-        <option value="" key="">
-          Pick hour...
-        </option>
+        {availableHours.length != 0 ? (
+          <option value="" key="">
+            Pick hour...
+          </option>
+        ) : (
+          <option value="" key="">
+            No time available.
+          </option>
+        )}
+
         {availableHours.map((hour) => (
           <option key={hour} value={hour}>
             {hour}:00

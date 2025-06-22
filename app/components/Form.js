@@ -64,25 +64,49 @@ export default function Form({
           </div>
         )}
         {/* Technician selection */}
-        <div className="space-y-4 space-x-4">
-          <label>Select the technician:</label>
-          <select
-            required
-            className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
-            onChange={(e) => {
-              const tech = JSON.parse(e.target.value); // Parse the technician
-              onTechChange(tech); // Call handler to update parent state
-            }}
-          >
-            <option value="">Select a technician...</option>
+        {datatype == "mani" ? (
+          <div className="space-y-4 space-x-4">
+            <label>Select the technician:</label>
+            <select
+              required
+              className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
+              onChange={(e) => {
+                const tech = JSON.parse(e.target.value); // Parse the technician
+                onTechChange(tech); // Call handler to update parent state
+              }}
+            >
+              <option value="">Select a technician...</option>
 
-            {tech?.map((tech) => (
-              <option value={JSON.stringify(tech)} key={tech.name}>
-                {tech.name}
-              </option>
-            ))}
-          </select>
-        </div>
+              {tech?.map((tech) => (
+                <option value={JSON.stringify(tech)} key={tech.name}>
+                  {tech.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <div className="space-y-4 space-x-4">
+            <label>Select the technician:</label>
+            <select
+              required
+              className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
+              onChange={(e) => {
+                const tech = JSON.parse(e.target.value); // Parse the technician
+                onTechChange(tech); // Call handler to update parent state
+              }}
+            >
+              <option value="">Select a technician...</option>
+
+              {tech
+                ?.filter((t) => t.name !== "Kostas")
+                .map((tech) => (
+                  <option value={JSON.stringify(tech)} key={tech.name}>
+                    {tech.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
       </form>
     </div>
   );
