@@ -12,40 +12,6 @@ import {
 import convertBlobUrlToFile from "../lib/convertImageToFile";
 
 export default function Page({ searchParams }) {
-  useEffect(() => {
-    const email = searchParams?.email;
-    const appointmentDateTime = searchParams?.appointmentDateTime;
-    const tech = searchParams?.tech;
-    const amount = searchParams?.amount;
-    const serviceName = searchParams?.serviceName;
-    const phone = searchParams?.phone;
-    const fullName = searchParams?.fullName;
-
-    const totalServicePrice = Number(searchParams?.totalServicePrice) || 0;
-    const extrasPrice = Number(searchParams?.extrasPrice) || 0;
-    const total = totalServicePrice + extrasPrice;
-
-    async function finalizeBooking() {
-      try {
-        // Save the appointment and get the appointment ID
-        const appId = await saveAppointment({
-          userEmail: email,
-          appointmentDate: appointmentDateTime,
-          tech: tech,
-          amount: revertToSuper(amount),
-          serviceName: serviceName,
-          phone: phone,
-          fullName: fullName,
-          totalAmount: total,
-        });
-      } catch (error) {
-        console.error("Error finalizing booking:", error);
-      }
-    }
-
-    // Call the function (e.g., inside a useEffect)
-    finalizeBooking();
-  }, []);
   const amount = searchParams?.amount;
   const amount2 = revertToSuper(amount);
   return (
