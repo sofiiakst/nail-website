@@ -7,13 +7,6 @@ import { revertToSuper } from "../../../lib/revertToSuper";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Disable body parsing (important for raw body to verify Stripe signature)
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(req) {
   const rawBody = await req.text();
   const signature = req.headers.get("stripe-signature");
