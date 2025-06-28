@@ -14,6 +14,7 @@ console.log(stripePromise);
 
 export default function CheckoutClientComponent({
   serviceName,
+  serviceDuration,
   servicePrice,
   appointmentDateTime,
   techName,
@@ -39,6 +40,7 @@ export default function CheckoutClientComponent({
         appointmentDateTime={appointmentDateTime}
         tech={techName}
         serviceName={serviceName}
+        serviceDuration={serviceDuration}
         phone={phone}
         image={image}
         fullName={fullName}

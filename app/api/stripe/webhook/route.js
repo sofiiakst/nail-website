@@ -24,10 +24,7 @@ export async function POST(req) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  if (
-    event.type === "checkout.session.completed" ||
-    event.type === "checkout.session.async_payment_succeeded"
-  ) {
+  if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object;
     const m = paymentIntent.metadata;
 
@@ -37,11 +34,12 @@ export async function POST(req) {
       const total = totalServicePrice + extrasPrice;
 
       await saveAppointment({
-        userEmail: paymentIntent.receipt_email || "", // or store in metadata if needed
+        userEmail: m.userEmail,
         appointmentDate: m.appointmentDateTime,
         tech: m.tech,
         amount: revertToSuper(m.amount),
         serviceName: m.serviceName,
+        duration: m.serviceDuration,
         phone: m.phone,
         fullName: m.fullName,
         totalAmount: total,

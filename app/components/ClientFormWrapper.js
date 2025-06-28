@@ -48,12 +48,14 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
         const year = selectedDate.getFullYear();
         const month = selectedDate.getMonth() + 1; // Month is 0-indexed, so add 1 to get the correct month
         const day = selectedDate.getDate();
-        const hour = selectedTime.padStart(2, "0"); // Ensure time is in two digits (e.g., "03")
+        const [hourStr, minuteStr] = selectedTime.split(":"); // Ensure time is in two digits (e.g., "03")
 
         // Format the date and time into an ISO-compliant string
         const appointmentDateTimeString = `${year}-${month
           .toString()
-          .padStart(2, "0")}-${day.toString().padStart(2, "0")}T${hour}:00:00Z`;
+          .padStart(2, "0")}-${day
+          .toString()
+          .padStart(2, "0")}T${hourStr}:${minuteStr}:00Z`;
 
         // Output the formatted date and time string
         console.log(
@@ -80,6 +82,7 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
           try {
             const query = new URLSearchParams({
               serviceName: selectedService.name,
+              serviceDuration: selectedService.duration,
               servicePrice: payUpfront(selectedService.price),
               extrasPrice: selectedExtra?.price || 0,
               totalServicePrice: selectedService.price,
@@ -166,6 +169,7 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
                   onSelectTime={setSelectedTime}
                   selectedTech={selectedTech}
                   selectedDate={selectedDate}
+                  selectedService={selectedService}
                 />
               ) : null}
             </div>

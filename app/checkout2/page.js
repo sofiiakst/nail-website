@@ -12,10 +12,11 @@ export default function Page() {
 
   // Get query parameters safely
   const serviceName = searchParams.get("serviceName") || "";
+  const serviceDuration=searchParams.get("serviceDuration");
   const servicePrice = searchParams.get("servicePrice") || "";
   const totalServicePrice = searchParams.get("totalServicePrice") || "";
   const extrasPrice = searchParams.get("extrasPrice") || "";
-  const amount = convertToSub(1);
+  const amount = convertToSub(5);
   const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
   console.log("from checkout2 page:", appointmentDateTime);
   const techName = searchParams.get("techName") || "";
@@ -27,6 +28,7 @@ export default function Page() {
     <div className="text-primary-950">
       <CheckoutClientComponent
         serviceName={serviceName}
+        serviceDuration={serviceDuration}
         servicePrice={amount}
         appointmentDateTime={appointmentDateTime}
         techName={techName}

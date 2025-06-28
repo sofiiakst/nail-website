@@ -4,10 +4,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 export async function POST(request) {
   try {
     const {
+      userEmail,
       amount,
       appointmentDateTime,
       tech,
       serviceName,
+      serviceDuration,
       phone,
       fullName,
       totalServicePrice,
@@ -19,10 +21,12 @@ export async function POST(request) {
       currency: "eur",
       automatic_payment_methods: { enabled: true },
       metadata: {
+        userEmail: userEmail,
         amount: amount.toString(), // metadata values must be strings
         appointmentDateTime: appointmentDateTime || "",
         tech: tech || "",
         serviceName: serviceName || "",
+        serviceDuration: serviceDuration?.toString() || "0",
         phone: phone || "",
         fullName: fullName || "",
         totalServicePrice: totalServicePrice?.toString() || "0",
