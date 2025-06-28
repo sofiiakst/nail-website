@@ -35,6 +35,14 @@ export default function Form({
               </option>
             ))}
           </select>
+          {datatype == "mani" && (
+            <p className="text-primary-800 font-thin text-sm">
+              {" "}
+              *Η επεκταση GEL κυμαινεται στα 30 με 45 ευρω αναλογα το μεγεθος{" "}
+              <br /> *Η συντηρηση GEL κυμαινεται στα 25 με 35 ευρω αναλογα το
+              μεγεθος
+            </p>
+          )}
         </div>
         {(datatype == "mani" || datatype == "pedi") && (
           <div className="space-y-4 space-x-4">
