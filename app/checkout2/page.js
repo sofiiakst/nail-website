@@ -12,7 +12,7 @@ export default function Page() {
 
   // Get query parameters safely
   const serviceName = searchParams.get("serviceName") || "";
-  const serviceDuration=searchParams.get("serviceDuration");
+  const serviceDuration = searchParams.get("serviceDuration");
   const servicePrice = searchParams.get("servicePrice") || "";
   const totalServicePrice = searchParams.get("totalServicePrice") || "";
   const extrasPrice = searchParams.get("extrasPrice") || "";
