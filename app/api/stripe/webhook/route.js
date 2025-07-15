@@ -47,7 +47,8 @@ export async function POST(req) {
 
       console.log("Appointment saved via webhook for:", m.fullName);
     } catch (err) {
-      console.error(" Error saving appointment in Supabase:", err);
+      console.error("❌ Error saving appointment:", err.message, err.stack);
+
       return new NextResponse("Server error saving appointment", {
         status: 500,
       });
