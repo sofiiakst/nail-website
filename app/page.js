@@ -1,9 +1,9 @@
 import HomePage from "./components/HomePage";
 
 export default function Page() {
-  /*return <HomePage />;*/
+  return <HomePage />;
 
-  return (
+  /*return (
     <div
       style={{
         height: "100vh",
@@ -24,5 +24,5 @@ export default function Page() {
         Our site is currently under renovation — check back soon!
       </p>
     </div>
-  );
+  );*/
 }

@@ -22,9 +22,23 @@ export default function DateSelector({ onSelectDate }) {
           const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
           const start = new Date(date.getFullYear(), 7, 10);
           const end = new Date(date.getFullYear(), 7, 25);
-          const isInDisabledRange = date >= start && date <= end;
 
-          return isBeforeToday || isSundayOrMonday || isInDisabledRange;
+          const start1 = new Date(date.getFullYear(), 7, 1);
+          const end1 = new Date(date.getFullYear(), 7, 2);
+          const start2 = new Date(date.getFullYear(), 7, 7);
+          const end2 = new Date(date.getFullYear(), 7, 9);
+
+          const isInDisabledRange = date >= start && date <= end;
+          const isInDisabledRange1 = date >= start1 && date <= end1;
+          const isInDisabledRange2 = date >= start2 && date <= end2;
+
+          return (
+            isBeforeToday ||
+            isSundayOrMonday ||
+            isInDisabledRange ||
+            isInDisabledRange1 ||
+            isInDisabledRange2
+          );
         }}
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
