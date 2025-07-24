@@ -65,52 +65,13 @@ export default function CheckoutPage2({
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
+  }, [amount, email]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
     try {
-      console.log("Attempting to send email...");
-      console.log("Sending to API:", {
-        amount,
-        appointmentDateTime,
-        tech,
-        serviceName,
-        phone,
-        image,
-        fullName,
-        totalServicePrice,
-        extrasPrice,
-      });
-      const emailResponse = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          amount,
-          appointmentDateTime,
-          tech,
-          serviceName,
-          phone,
-          image,
-          fullName,
-          totalServicePrice,
-          extrasPrice,
-        }),
-      });
-
-      console.log("Email response status:", emailResponse.status);
-      const emailData = await emailResponse.json();
-      console.log("Email response body:", emailData);
-
-      if (emailResponse.status === 200) {
-        console.log("Email sent successfully");
-      } else {
-        console.error("Failed to send email:", emailData.error);
-      }
       if (!stripe || !elements || !clientSecret) return <Spinner />;
       const { error: submitError } = await elements.submit();
       if (submitError) {

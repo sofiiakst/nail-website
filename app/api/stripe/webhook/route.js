@@ -46,6 +46,34 @@ export async function POST(req) {
       });
 
       console.log("Appointment saved via webhook for:", m.fullName);
+
+      const emailResponse = await fetch("https://nail-topia.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          appointmentDateTime,
+          tech,
+          serviceName,
+          phone,
+          image,
+          fullName,
+          totalServicePrice,
+          extrasPrice,
+        }),
+      });
+
+      console.log("Email response status:", emailResponse.status);
+      const emailData = await emailResponse.json();
+      console.log("Email response body:", emailData);
+
+      if (emailResponse.status === 200) {
+        console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email:", emailData.error);
+      }
     } catch (err) {
       console.error("❌ Error saving appointment:", err.message, err.stack);
 
