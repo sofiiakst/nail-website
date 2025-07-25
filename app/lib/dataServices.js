@@ -247,3 +247,22 @@ export async function updateAppointmentWithImage(appointmentId, imageUrl) {
 
   return true;
 }
+
+export async function appointmentExistsByPaymentIntentId(payIntID) {
+  const { data, error } = await supabase
+    .from("Appointments") // your table name
+    .select("id") // minimal select
+    .eq("payIntID", payIntID)
+    .limit(1)
+    .single(); // only one row
+
+  if (error) {
+    // Only log errors that are not 'No rows found'
+    if (error.code !== "PGRST116") {
+      console.error("Error checking appointment existence:", error.message);
+    }
+    return false;
+  }
+
+  return !!data;
+}

@@ -11,7 +11,6 @@ export const POST = async (req) => {
       tech,
       serviceName,
       phone,
-      image,
       fullName,
       totalServicePrice,
       extrasPrice,

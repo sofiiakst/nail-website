@@ -2,7 +2,10 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-import { saveAppointment } from "../../../lib/dataServices"; // Use your actual import path
+import {
+  appointmentExistsByPaymentIntentId,
+  saveAppointment,
+} from "../../../lib/dataServices"; // Use your actual import path
 import { revertToSuper } from "../../../lib/revertToSuper";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -27,13 +30,24 @@ export async function POST(req) {
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object;
     const m = paymentIntent.metadata;
+    const payIntID = paymentIntent.id;
 
     try {
+      const alreadySaved = await appointmentExistsByPaymentIntentId(payIntID);
+      if (alreadySaved) {
+        console.log("ℹ️ Appointment already exists. Skipping duplicate.");
+        return new NextResponse(JSON.stringify({ received: true }), {
+          status: 200,
+        });
+      }
+
       const totalServicePrice = Number(m.totalServicePrice || "0");
       const extrasPrice = Number(m.extrasPrice || "0");
       const total = totalServicePrice + extrasPrice;
 
-      await saveAppointment({
+      // ✅ Save appointment
+      const newAppointment = await saveAppointment({
+        payIntID: payIntID,
         userEmail: m.userEmail,
         appointmentDate: m.appointmentDateTime,
         tech: m.tech,
@@ -43,36 +57,42 @@ export async function POST(req) {
         phone: m.phone,
         fullName: m.fullName,
         totalAmount: total,
+        stripePaymentIntentId: paymentIntent.id,
       });
 
-      console.log("Appointment saved via webhook for:", m.fullName);
+      if (!newAppointment) {
+        console.error("❌ Appointment failed to save, email skipped.");
+        return new NextResponse("Appointment save failed", { status: 500 });
+      }
 
+      console.log("✅ Appointment saved for:", m.fullName);
+
+      // ✅ Send email only if save was successful
       const emailResponse = await fetch("https://nail-topia.com/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount,
-          appointmentDateTime,
-          tech,
-          serviceName,
-          phone,
-          image,
-          fullName,
-          totalServicePrice,
-          extrasPrice,
+          amount: m.amount,
+          appointmentDateTime: m.appointmentDateTime,
+          tech: m.tech,
+          serviceName: m.serviceName,
+          phone: m.phone,
+          fullName: m.fullName,
+          totalServicePrice: totalServicePrice,
+          extrasPrice: extrasPrice,
         }),
       });
 
-      console.log("Email response status:", emailResponse.status);
       const emailData = await emailResponse.json();
-      console.log("Email response body:", emailData);
+      console.log("📧 Email response status:", emailResponse.status, emailData);
 
       if (emailResponse.status === 200) {
-        console.log("Email sent successfully");
+        console.log("✅ Email sent successfully");
       } else {
-        console.error("Failed to send email:", emailData.error);
+        console.error(
+          "❌ Failed to send email:",
+          emailData?.error || "Unknown"
+        );
       }
     } catch (err) {
       console.error("❌ Error saving appointment:", err.message, err.stack);
