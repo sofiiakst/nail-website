@@ -252,7 +252,7 @@ export async function appointmentExistsByPaymentIntentId(payIntID) {
   const { data, error } = await supabase
     .from("Appointments") // your table name
     .select("id") // minimal select
-    .eq("payIntID", payIntID)
+    .eq("stripePaymentIntentId", payIntID)
     .limit(1)
     .single(); // only one row
 

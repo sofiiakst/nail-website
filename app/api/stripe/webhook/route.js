@@ -47,7 +47,7 @@ export async function POST(req) {
 
       // ✅ Save appointment
       const newAppointment = await saveAppointment({
-        payIntID: payIntID,
+        stripePaymentIntentId: payIntID,
         userEmail: m.userEmail,
         appointmentDate: m.appointmentDateTime,
         tech: m.tech,
