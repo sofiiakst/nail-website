@@ -14,9 +14,10 @@ export const POST = async (req) => {
       fullName,
       totalServicePrice,
       extrasPrice,
+      userEmail,
     } = await req.json();
     console.log("Appointment Date Received:", appointmentDateTime);
-    const result = await sendEmail(appointmentDateTime);
+    const result = await sendEmail(appointmentDateTime, userEmail);
     const result2 = await sendEmail3(
       amount,
       appointmentDateTime,
@@ -25,7 +26,8 @@ export const POST = async (req) => {
       phone,
       fullName,
       totalServicePrice,
-      extrasPrice
+      extrasPrice,
+      userEmail
     );
     console.log("Email sent result:", result);
     console.log("Email marias sent result:", result2);

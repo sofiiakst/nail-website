@@ -28,7 +28,8 @@ export const sendEmail3 = async (
   phone,
   fullName,
   totalServicePrice,
-  extrasPrice
+  extrasPrice,
+  userEmail
 ) => {
   try {
     console.log(appointmentDateTime);

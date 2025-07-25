@@ -80,6 +80,7 @@ export async function POST(req) {
           fullName: m.fullName,
           totalServicePrice: totalServicePrice,
           extrasPrice: extrasPrice,
+          userEmail: m.userEmail,
         }),
       });
 

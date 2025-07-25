@@ -16,7 +16,7 @@ export default function Page() {
   const servicePrice = searchParams.get("servicePrice") || "";
   const totalServicePrice = searchParams.get("totalServicePrice") || "";
   const extrasPrice = searchParams.get("extrasPrice") || "";
-  const amount = convertToSub(5);
+  const amount = convertToSub(1);
   const appointmentDateTime = searchParams.get("appointmentDateTime") || "";
   console.log("from checkout2 page:", appointmentDateTime);
   const techName = searchParams.get("techName") || "";

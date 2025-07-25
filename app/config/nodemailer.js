@@ -20,10 +20,10 @@ const formatDate = (date) => {
     minute: "2-digit",
   });
 };
-export const sendEmail = async (appointmentDateTime) => {
+export const sendEmail = async (appointmentDateTime, userEmail) => {
   try {
     console.log(appointmentDateTime);
-    const session = await auth();
+
     const accessToken = await oAuth2Client.getAccessToken();
     const transporter = nodemailer.createTransport({
       service: "gmail", // Or use SMTP settings
@@ -41,7 +41,7 @@ export const sendEmail = async (appointmentDateTime) => {
 
     const mailOptions = {
       from: `"NAILTOPIA" <${process.env.EMAIL_USER}>`,
-      to: session.user.email,
+      to: userEmail,
       subject: "Ευχαριστουμε για την προτιμηση σας!",
       text: `Το ραντεβού σας προγραμματίστηκε για: ${formatDate(
         appointmentDateTime
