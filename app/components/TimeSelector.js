@@ -48,11 +48,24 @@ export default function TimeSelector({
     );
     const selectedDateStr = selectedDayUTC.toISOString().split("T")[0];
 
+    const isNov6 = (date) => {
+      // November is month index 10 (zero-based)
+      if (date.getMonth() === 10 && date.getDate() === 6) {
+        return date.getDate(); // returns 6
+      }
+      return null;
+    };
+
     let startHour, endHour;
     const day = selectedDate.getDay();
+    const nov6 = isNov6(selectedDate);
 
     if (selectedTech.name === "Maria") {
-      if (day >= 2 && day <= 5) {
+      if (nov6) {
+        // Special case: November 6th of any year
+        startHour = 12;
+        endHour = 20;
+      } else if (day >= 2 && day <= 5) {
         startHour = 10;
         endHour = 20;
       } else if (day === 6) {
