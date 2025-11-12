@@ -1,5 +1,5 @@
 "use client";
-import { isPast } from "date-fns";
+import { isPast, isBefore, startOfDay, endOfDay, addMonths } from "date-fns";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
@@ -18,7 +18,12 @@ export default function DateSelector({ onSelectDate }) {
       <DayPicker
         required
         disabled={(date) => {
-          const isBeforeToday = isPast(date);
+          const todayStart = startOfDay(new Date());
+
+          const maxDate = addMonths(todayStart, 1);
+
+          const isBeforeToday = isBefore(date, todayStart);
+          const isAfterMax = date > maxDate;
           const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
           const start = new Date(date.getFullYear(), 7, 10);
           const end = new Date(date.getFullYear(), 7, 25);
@@ -44,6 +49,7 @@ export default function DateSelector({ onSelectDate }) {
 
           return (
             isBeforeToday ||
+            isAfterMax ||
             isSundayOrMonday ||
             isInDisabledRange ||
             isInDisabledRange1 ||
