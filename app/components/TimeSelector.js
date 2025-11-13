@@ -72,13 +72,13 @@ export default function TimeSelector({
         startHour = 10;
         endHour = 18;
       }
-    } else if (selectedTech.name === "Kostas") {
+    } else if (selectedTech.name === "Eleni") {
       if (day >= 2 && day <= 5) {
-        startHour = 16;
-        endHour = 20;
-      } else if (day === 6) {
         startHour = 12;
         endHour = 16;
+      } else if (day === 6) {
+        startHour = 10;
+        endHour = 14;
       }
     }
 

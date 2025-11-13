@@ -1,5 +1,12 @@
 "use client";
-import { isPast, isBefore, startOfDay, endOfDay, addMonths } from "date-fns";
+import {
+  isPast,
+  isBefore,
+  startOfDay,
+  endOfDay,
+  addMonths,
+  addDays,
+} from "date-fns";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
@@ -13,6 +20,9 @@ export default function DateSelector({ onSelectDate }) {
       onSelectDate(day); // Pass formatted date directly to parent
     }
   };
+
+  const today = startOfDay(new Date());
+  const twoWeeksLater = addDays(today, 13);
   return (
     <div className="flex flex-col justify-between ">
       <DayPicker
@@ -22,7 +32,11 @@ export default function DateSelector({ onSelectDate }) {
 
           const maxDate = addMonths(todayStart, 1);
 
-          const isBeforeToday = isBefore(date, todayStart);
+          const isBeforeToday = isBefore(
+            date,
+            addDays(startOfDay(new Date()), 1)
+          );
+
           const isAfterMax = date > maxDate;
           const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
           const start = new Date(date.getFullYear(), 7, 10);
@@ -68,6 +82,10 @@ export default function DateSelector({ onSelectDate }) {
         }}
         numberOfMonths={1}
         mode="single"
+        hidden={{
+          before: today,
+          after: twoWeeksLater,
+        }}
         onSelect={handleDateSelect}
         selected={selectedDay}
         modifiersClassNames={{

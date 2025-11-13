@@ -148,6 +148,7 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
                 onTechChange={setSelectedTech}
                 onImageChange={setImage}
                 onNameChange={setFullName}
+                selectedService={selectedService}
               />
             </div>
 
