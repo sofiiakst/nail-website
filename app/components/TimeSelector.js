@@ -48,9 +48,9 @@ export default function TimeSelector({
     );
     const selectedDateStr = selectedDayUTC.toISOString().split("T")[0];
 
-    const isNov6 = (date) => {
+    const isDec31 = (date) => {
       // November is month index 10 (zero-based)
-      if (date.getMonth() === 10 && date.getDate() === 6) {
+      if (date.getMonth() === 11 && date.getDate() === 31) {
         return date.getDate(); // returns 6
       }
       return null;
@@ -58,13 +58,13 @@ export default function TimeSelector({
 
     let startHour, endHour;
     const day = selectedDate.getDay();
-    const nov6 = isNov6(selectedDate);
+    const dec31 = isDec31(selectedDate);
 
     if (selectedTech.name === "Maria") {
-      if (nov6) {
+      if (dec31) {
         // Special case: November 6th of any year
-        startHour = 12;
-        endHour = 20;
+        startHour = 10;
+        endHour = 14;
       } else if (day >= 2 && day <= 5) {
         startHour = 10;
         endHour = 20;
@@ -73,7 +73,10 @@ export default function TimeSelector({
         endHour = 18;
       }
     } else if (selectedTech.name === "Eleni") {
-      if (day >= 2 && day <= 5) {
+      if (dec31) {
+        startHour = 12;
+        endHour = 14;
+      } else if (day >= 2 && day <= 5) {
         startHour = 12;
         endHour = 16;
       } else if (day === 6) {
