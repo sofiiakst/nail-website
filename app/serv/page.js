@@ -11,7 +11,6 @@ export default function Page() {
     <div className="min-h-screen bg-white flex justify-center items-center gap-4 ">
       <Reveal>
         <div className="flex flex-col sm:grid sm:grid-cols-2 gap-10 ">
-          {/* Square 1 */}
           <div
             className="rounded-md relative w-80 h-80 bg-cover bg-center  border-primary-200 flex items-center "
             style={{
@@ -24,7 +23,6 @@ export default function Page() {
             </Link>
           </div>
 
-          {/* Square 2 */}
           <div
             className="rounded-md relativew-80 h-80 bg-cover bg-center border-primary-200 flex items-center"
             style={{
@@ -37,7 +35,6 @@ export default function Page() {
             </Link>
           </div>
 
-          {/* Square 3 */}
           <div
             className="rounded-md relative w-80 h-80 bg-cover bg-center  bg-white  border-2  flex items-center"
             style={{
@@ -50,7 +47,6 @@ export default function Page() {
             </Link>
           </div>
 
-          {/* Square 4 */}
           <div
             className="rounded-md relative w-80 h-80 bg-cover bg-center  bg-black/30 flex items-center"
             style={{

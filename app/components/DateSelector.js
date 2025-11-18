@@ -10,14 +10,12 @@ import {
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
-// Ensure you're in client mode
-
 export default function DateSelector({ onSelectDate }) {
   const [selectedDay, setSelectedDay] = useState(null);
   const handleDateSelect = (day) => {
     if (day) {
       setSelectedDay(day);
-      onSelectDate(day); // Pass formatted date directly to parent
+      onSelectDate(day);
     }
   };
 
@@ -80,8 +78,8 @@ export default function DateSelector({ onSelectDate }) {
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
           day: {
-            width: "3rem", // Customize width of each day cell
-            height: "3rem", // Customize height of each day cell
+            width: "3rem",
+            height: "3rem",
           },
         }}
         numberOfMonths={1}

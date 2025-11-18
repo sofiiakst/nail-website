@@ -10,16 +10,13 @@ export default function Navigation({ session }) {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    // Check on mount
     handleResize();
 
-    // Add event listener for resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -34,8 +31,6 @@ export default function Navigation({ session }) {
         !isOpen ? "w-1/3 flex justify-end mr-5" : "w-full"
       } md:w-auto mt-5 md:mt-0 `}
     >
-      {/* Desktop navigation */}
-
       <ul className="hidden md:flex gap-16 items-center mt-5 ">
         <li>
           <Link
@@ -94,7 +89,6 @@ export default function Navigation({ session }) {
         )}
       </ul>
 
-      {/* Mobile menu toggle button */}
       <div className="md:hidden flex flex-col ">
         <button
           onClick={toggleMenu}
@@ -132,7 +126,6 @@ export default function Navigation({ session }) {
         </button>
       </div>
 
-      {/* Mobile navigation */}
       {isOpen && (
         <div className=" md:hidden fle flex-col items-center gap-4 bg-transparent p-4 rounded-md w-screen h-screen">
           <ul className="flex flex-col items-center gap-10 mt-5 ">

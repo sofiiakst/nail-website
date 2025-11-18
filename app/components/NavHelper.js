@@ -1,10 +1,10 @@
-"use server"; // You can also omit this as server components are the default
+"use server";
 
-import { auth } from "../lib/auth"; // Assuming auth is a function that fetches session data
+import { auth } from "../lib/auth";
 import Navigation from "./Navigation";
 
 export default async function NavHelper() {
-  const session = await auth(); // Fetch the session
+  const session = await auth();
 
   return <Navigation session={session} />;
 }

@@ -24,7 +24,6 @@ export default function CheckoutClientComponent() {
         currency: "eur",
       }}
     >
-      {/* Pass down amount and other details to the checkout component */}
       <CheckoutPage amount={amount} />
     </Elements>
   );

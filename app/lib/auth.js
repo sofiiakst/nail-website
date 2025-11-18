@@ -18,8 +18,6 @@ const authConfig = {
   },
 };
 
-/*export default NextAuth(authConfig);*/
-
 export const {
   auth,
   signIn,

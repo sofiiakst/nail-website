@@ -34,14 +34,14 @@ export default function CheckoutPage2({
   useEffect(() => {
     async function fetchEmail() {
       try {
-        const userEmail = await getUserEmail(); // Get the email asynchronously
+        const userEmail = await getUserEmail();
         setEmail(userEmail);
       } catch (error) {
         console.error("Error fetching user email:", error);
       }
     }
 
-    fetchEmail(); // Call the function to get the email
+    fetchEmail();
   }, []);
 
   useEffect(() => {
@@ -106,7 +106,6 @@ export default function CheckoutPage2({
       }
 
       setLoading(false);
-      // Payment succeeded, handle success (you could redirect, show a message, etc.)
     } catch (error) {
       console.error("Error occurred:", error);
       alert(
@@ -132,7 +131,7 @@ export default function CheckoutPage2({
           </button>
         </>
       ) : (
-        <Spinner /> // Add a spinner or loading state if clientSecret isn't ready
+        <Spinner />
       )}
     </form>
   );

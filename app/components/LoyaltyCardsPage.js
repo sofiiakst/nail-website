@@ -9,11 +9,7 @@ export default function LoyaltyCardsPage() {
 
   return (
     <main className="mt-11 notranslate">
-      {/* Background Image */}
-
-      {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row w-full">
-        {/* Left Section */}
         <div className="flex flex-col ">
           <Reveal>
             <h1 className="text-primary-950 text-3xl text-center sm:text-start  sm:text-5xl font-bold max-w-md">
@@ -32,7 +28,6 @@ export default function LoyaltyCardsPage() {
           </p>
         </div>
 
-        {/* Right Section */}
         <div className="flex flex-col mt-20   md:ml-80">
           <h1 className="text-primary-950 ml-10 md:ml-6 font-bold mb-6 ">
             ΠΩΣ ΘΑ ΛΑΒΕΙΣ ΚΑΡΤΑ ΕΠΙΒΡΑΒΕΥΣΗΣ:

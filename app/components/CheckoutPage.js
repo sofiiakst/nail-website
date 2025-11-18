@@ -51,7 +51,6 @@ export default function CheckoutPage({ amount }) {
       throw new Error(error.message);
     }
     setLoading(false);
-    // Payment succeeded, handle success (you could redirect, show a message, etc.)
   };
   const displayAmount = revertToSuper(amount);
   return (

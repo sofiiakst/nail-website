@@ -1,11 +1,10 @@
-// app/api/stripe/webhook/route.js
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import {
   appointmentExistsByPaymentIntentId,
   saveAppointment,
-} from "../../../lib/dataServices"; // Use your actual import path
+} from "../../../lib/dataServices";
 import { revertToSuper } from "../../../lib/revertToSuper";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -35,7 +34,7 @@ export async function POST(req) {
     try {
       const alreadySaved = await appointmentExistsByPaymentIntentId(payIntID);
       if (alreadySaved) {
-        console.log("ℹ️ Appointment already exists. Skipping duplicate.");
+        console.log("Appointment already exists. Skipping duplicate.");
         return new NextResponse(JSON.stringify({ received: true }), {
           status: 200,
         });
@@ -45,7 +44,6 @@ export async function POST(req) {
       const extrasPrice = Number(m.extrasPrice || "0");
       const total = totalServicePrice + extrasPrice;
 
-      // ✅ Save appointment
       const newAppointment = await saveAppointment({
         stripePaymentIntentId: payIntID,
         userEmail: m.userEmail,
@@ -61,13 +59,12 @@ export async function POST(req) {
       });
 
       if (!newAppointment) {
-        console.error("❌ Appointment failed to save, email skipped.");
+        console.error("Appointment failed to save, email skipped.");
         return new NextResponse("Appointment save failed", { status: 500 });
       }
 
-      console.log("✅ Appointment saved for:", m.fullName);
+      console.log("Appointment saved for:", m.fullName);
 
-      // ✅ Send email only if save was successful
       const emailResponse = await fetch("https://nail-topia.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,15 +85,12 @@ export async function POST(req) {
       console.log("📧 Email response status:", emailResponse.status, emailData);
 
       if (emailResponse.status === 200) {
-        console.log("✅ Email sent successfully");
+        console.log("Email sent successfully");
       } else {
-        console.error(
-          "❌ Failed to send email:",
-          emailData?.error || "Unknown"
-        );
+        console.error("Failed to send email:", emailData?.error || "Unknown");
       }
     } catch (err) {
-      console.error("❌ Error saving appointment:", err.message, err.stack);
+      console.error("Error saving appointment:", err.message, err.stack);
 
       return new NextResponse("Server error saving appointment", {
         status: 500,

@@ -4,12 +4,7 @@ import Reveal from "./Words";
 export default function GiftCardsPage() {
   return (
     <main className="mt-11">
-      {/* Background Image */}
-
-      {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row w-full">
-        {/* Left Section */}
-
         <div className="flex flex-col">
           <Reveal>
             <h1 className="text-primary-950 text-3xl sm:text-5xl font-bold max-w-md">
@@ -23,7 +18,6 @@ export default function GiftCardsPage() {
           </p>
         </div>
 
-        {/* Right Section */}
         <div className="flex flex-col mt-20 mr-20 md:ml-80">
           <h1 className="text-primary-950 ml-0 md:ml-6 font-bold mb-6 ">
             HOW TO BUY THE GIFTCARD:

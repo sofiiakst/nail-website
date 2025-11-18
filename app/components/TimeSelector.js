@@ -49,9 +49,8 @@ export default function TimeSelector({
     const selectedDateStr = selectedDayUTC.toISOString().split("T")[0];
 
     const isDec31 = (date) => {
-      // November is month index 10 (zero-based)
       if (date.getMonth() === 11 && date.getDate() === 31) {
-        return date.getDate(); // returns 6
+        return date.getDate();
       }
       return null;
     };
@@ -62,7 +61,6 @@ export default function TimeSelector({
 
     if (selectedTech.name === "Maria") {
       if (dec31) {
-        // Special case: November 6th of any year
         startHour = 10;
         endHour = 14;
       } else if (day >= 2 && day <= 5) {
@@ -126,13 +124,12 @@ export default function TimeSelector({
         const timeStr = `${h}:${m}`;
 
         if (blockedSlots.has(timeStr)) {
-          return false; // One of the required slots is blocked
+          return false;
         }
 
         slotTimes.push(timeStr);
       }
 
-      // Check if it ends before working hours end
       const endMinutes = totalMinutes + selectedService.duration * 30;
       return endMinutes <= endHour * 60;
     });

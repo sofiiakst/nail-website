@@ -126,7 +126,7 @@ export async function getManiById(maniId) {
       .from("Mani")
       .select("*")
       .eq("id", maniId)
-      .single(); // single() ensures only one result is returned
+      .single();
     if (error) throw error;
 
     if (!mani) {
@@ -147,7 +147,7 @@ export async function getPediById(pediId) {
       .from("Pedi")
       .select("*")
       .eq("id", pediId)
-      .single(); // single() ensures only one result is returned
+      .single();
     if (error) throw error;
 
     if (!pedi) {
@@ -164,16 +164,16 @@ export async function getPediById(pediId) {
 export async function saveAppointment(appointment) {
   try {
     const { data, error } = await supabase
-      .from("Appointments") // Replace 'Appointments' with your actual table name if different
+      .from("Appointments")
       .insert([appointment])
-      .select("id") // Select the id of the inserted record
+      .select("id")
       .single();
 
     if (error) {
       throw error;
     }
 
-    return data.id; // Successfully saved
+    return data.id;
   } catch (error) {
     console.error("Error saving appointment to Supabase:", error);
     throw error;
@@ -182,24 +182,24 @@ export async function saveAppointment(appointment) {
 
 export async function deleteAppointment(id) {
   const { data, error } = await supabase
-    .from("Appointments") // Replace with your table name
+    .from("Appointments")
     .delete()
-    .eq("id", id); // Assuming 'id' is the primary key
+    .eq("id", id);
   return { data, error };
 }
 export async function getAppointments(current) {
   const start = new Date(current);
   start.setDate(start.getDate() + 1);
-  start.setHours(0, 0, 0, 0); // Tomorrow at 00:00:00
+  start.setHours(0, 0, 0, 0);
 
   const end = new Date(start);
   end.setHours(23, 59, 59, 999);
 
   const { data: appointments, error } = await supabase
-    .from("Appointments") // Replace with your table name
+    .from("Appointments")
     .select("*")
     .gte("appointmentDate", start.toISOString())
-    .lte("appointmentDate", end.toISOString()); // Greater or equal to the start of tomorrow
+    .lte("appointmentDate", end.toISOString());
 
   if (error) {
     console.error("Error fetching appointments:", error);
@@ -212,13 +212,13 @@ export async function uploadImage(file, appointmentId) {
   if (!file || !appointmentId) return null;
   const uuid = uuidv4();
 
-  const fileName = `${uuid}-${file.name}`; // Unique filename
+  const fileName = `${uuid}-${file.name}`;
   const fileExtension = fileName.slice(fileName.lastIndexOf(".") + 1);
 
-  const filePath = `appointments/${appointmentId}/${uuidv4()}.${fileExtension}`; // Organized by appointment
+  const filePath = `appointments/${appointmentId}/${uuidv4()}.${fileExtension}`;
 
   const { data, error } = await supabase.storage
-    .from("nail-refs") // Your bucket name
+    .from("nail-refs")
     .upload(filePath, file);
 
   if (error) {
@@ -226,19 +226,18 @@ export async function uploadImage(file, appointmentId) {
     return null;
   }
 
-  // Get the public URL of the uploaded image
   const { data: publicUrlData } = supabase.storage
     .from("nail-refs")
     .getPublicUrl(filePath);
 
-  return publicUrlData.publicUrl; // Return image URL
+  return publicUrlData.publicUrl;
 }
 
 export async function updateAppointmentWithImage(appointmentId, imageUrl) {
   const { error } = await supabase
     .from("Appointments")
-    .update({ image: imageUrl }) // Store image URL
-    .eq("id", appointmentId); // Find the correct appointment
+    .update({ image: imageUrl })
+    .eq("id", appointmentId);
 
   if (error) {
     console.error("Error updating appointment with image:", error);
@@ -250,14 +249,13 @@ export async function updateAppointmentWithImage(appointmentId, imageUrl) {
 
 export async function appointmentExistsByPaymentIntentId(payIntID) {
   const { data, error } = await supabase
-    .from("Appointments") // your table name
-    .select("id") // minimal select
+    .from("Appointments")
+    .select("id")
     .eq("stripePaymentIntentId", payIntID)
     .limit(1)
-    .single(); // only one row
+    .single();
 
   if (error) {
-    // Only log errors that are not 'No rows found'
     if (error.code !== "PGRST116") {
       console.error("Error checking appointment existence:", error.message);
     }

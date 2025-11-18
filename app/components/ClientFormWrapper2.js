@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function ClientFormWrapper2() {
   const [formState, setFormState] = useState({
-    message: "", // Optional field
+    message: "",
     toName: "",
     toEmail: "",
     firstName: "",
@@ -16,7 +16,6 @@ export default function ClientFormWrapper2() {
     amount: "",
   });
 
-  // Validation: Check if all required fields are filled
   const isFormValid =
     formState.toName &&
     formState.toEmail &&
@@ -25,7 +24,6 @@ export default function ClientFormWrapper2() {
     formState.yourEmail &&
     formState.amount;
 
-  // Handle changes in the form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({
@@ -38,11 +36,9 @@ export default function ClientFormWrapper2() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Get the selected radio button value by its name
     const selected = document.querySelector('input[name="to"]:checked');
 
     if (selected) {
-      // Pass form data to checkout page as query parameters
       const query = new URLSearchParams({
         selected: selected.value,
       }).toString();

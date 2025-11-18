@@ -8,9 +8,8 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 }
 
 export default function Page() {
-  const searchParams = useSearchParams(); // Access query parameters
+  const searchParams = useSearchParams();
 
-  // Get query parameters safely
   const serviceName = searchParams.get("serviceName") || "";
   const serviceDuration = searchParams.get("serviceDuration");
   const servicePrice = searchParams.get("servicePrice") || "";

@@ -1,8 +1,8 @@
-"use client"; // Makes this component client-side
+"use client";
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Form from "./Form"; // Import your existing server-side Form component
+import Form from "./Form";
 
 import DateSelector from "./DateSelector";
 import TimeSelector from "./TimeSelector";
@@ -31,7 +31,6 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
     setFullName(name);
   }
 
-  // Handle form submission
   useEffect(() => {
     console.log("Selected Date in Wrapper:", selectedDate);
     console.log("Selected Time in Wrapper:", selectedTime);
@@ -46,32 +45,28 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
 
       try {
         const year = selectedDate.getFullYear();
-        const month = selectedDate.getMonth() + 1; // Month is 0-indexed, so add 1 to get the correct month
+        const month = selectedDate.getMonth() + 1;
         const day = selectedDate.getDate();
-        const [hourStr, minuteStr] = selectedTime.split(":"); // Ensure time is in two digits (e.g., "03")
+        const [hourStr, minuteStr] = selectedTime.split(":");
 
-        // Format the date and time into an ISO-compliant string
         const appointmentDateTimeString = `${year}-${month
           .toString()
           .padStart(2, "0")}-${day
           .toString()
           .padStart(2, "0")}T${hourStr}:${minuteStr}:00Z`;
 
-        // Output the formatted date and time string
         console.log(
           "Constructed Appointment DateTime String:",
           appointmentDateTimeString
         );
 
-        // Create a Date object using the formatted string
         const appointmentDateTime = new Date(appointmentDateTimeString);
 
-        // Check if the date is valid
         if (isNaN(appointmentDateTime.getTime())) {
           console.error("Invalid date or time value");
           throw new Error("Invalid date or time value");
         }
-        // Convert to ISO format
+
         const appointmentDateTimeISO = appointmentDateTime.toISOString();
         console.log(
           "Appointment DateTime in ISO format:",
@@ -112,10 +107,9 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
   }, [submitStatus, selectedDate, selectedTime]);
 
   const handleSubmit = () => {
-    // Greek Phone Number Format Validation
     if (!greekPhoneRegex.test(phone)) {
       alert("Please enter a valid phone number.");
-      return; // Prevent form submission
+      return;
     }
 
     if (
@@ -126,7 +120,7 @@ export default function ClientFormWrapper({ extras, datatype, data, tech }) {
       selectedDate &&
       selectedTime
     ) {
-      setSubmitStatus("submitting"); // Triggers useEffect to submit form
+      setSubmitStatus("submitting");
     } else {
       alert("Παρακαλω εισαγετε εγκυρα στοιχεια.");
     }

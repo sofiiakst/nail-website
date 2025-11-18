@@ -32,7 +32,6 @@ export default function Form({
         className="lg:h-auto py-10 px-16 text-lg sm:text-xl flex gap-5 flex-col text-primary-900 mr-5 sm:mr-0"
         encType="multipart/form-data"
       >
-        {/* Service selection */}
         <div className="space-y-4 space-x-4 ">
           <label>Select the type of service:</label>
           <select
@@ -90,7 +89,6 @@ export default function Form({
             </p>
           </div>
         )}
-        {/* Technician selection */}
 
         <div className="space-y-4 space-x-4">
           <label>Select the technician:</label>
@@ -98,8 +96,8 @@ export default function Form({
             required
             className="px-5 py-3 bg-primary-50 text-primary-500 w-full md:w-1/2 lg:w-full shadow-sm rounded-md"
             onChange={(e) => {
-              const tech = JSON.parse(e.target.value); // Parse the technician
-              onTechChange(tech); // Call handler to update parent state
+              const tech = JSON.parse(e.target.value);
+              onTechChange(tech);
             }}
           >
             <option value="">Select a technician...</option>

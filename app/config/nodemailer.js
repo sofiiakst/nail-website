@@ -11,7 +11,6 @@ oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 const formatDate = (date) => {
   const appointmentDate = new Date(date);
 
-  // Convert the UTC date to the local time zone before displaying
   return appointmentDate.toUTCString("en-US", {
     year: "numeric",
     month: "2-digit",
@@ -29,13 +28,13 @@ export const sendEmail = async (appointmentDateTime, userEmail) => {
       service: "gmail", // Or use SMTP settings
       auth: {
         type: "OAuth2",
-        user: process.env.EMAIL_USER, // Your email address
+        user: process.env.EMAIL_USER,
         clientId: process.env.AUTH_GOOGLE_ID,
         clientSecret: process.env.AUTH_GOOGLE_SECRET,
         refreshToken: process.env.REFRESH_TOKEN,
         accessToken: accessToken.token,
       },
-      logger: true, // Enable logging
+      logger: true,
       debug: true,
     });
 

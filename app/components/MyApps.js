@@ -4,17 +4,14 @@ import Link from "next/link";
 
 export default function MyAppointments({ apps }) {
   const now = new Date();
-  now.setHours(0, 0, 0, 0); // Set current time to 00:00:00 to ignore time part
+  now.setHours(0, 0, 0, 0);
 
-  // Filter appointments for today and later
   const upcomingAppointments = apps
     ? apps.filter((appointment) => {
         const appointmentDate = new Date(appointment.appointmentDate);
 
-        // Normalize the appointment date to midnight (removes time part)
         appointmentDate.setHours(0, 0, 0, 0);
 
-        // Include only future appointments
         return appointmentDate >= now;
       })
     : [];
@@ -22,7 +19,6 @@ export default function MyAppointments({ apps }) {
   const formatDate = (date) => {
     const appointmentDate = new Date(date);
 
-    // Convert the UTC date to the local time zone before displaying
     return appointmentDate.toUTCString("en-US", {
       year: "numeric",
       month: "2-digit",
