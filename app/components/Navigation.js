@@ -65,7 +65,7 @@ export default function Navigation({ session }) {
           </a>
         </li>
         <li>
-          <a href="mailto:mariath0411@gmail.com" aria-label="Send Email">
+          <a href="mailto:fakeemail@gmail.com" aria-label="Send Email">
             <Image
               src="/email.svg"
               alt="Email"
@@ -164,7 +164,7 @@ export default function Navigation({ session }) {
               </a>
             </li>
             <li>
-              <a href="mailto:mariath0411@gmail.com" aria-label="Send Email">
+              <a href="mailto:fakeemail@gmail.com" aria-label="Send Email">
                 <Image
                   src="/email.svg"
                   alt="Email"
