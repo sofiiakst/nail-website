@@ -72,7 +72,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `http://localhost:3000/book-success?email=${encodeURIComponent(
+          return_url: `https://nail-website-lqsp.onrender.com/book-success?email=${encodeURIComponent(
             email
           )}&appointmentDateTime=${encodeURIComponent(
             appointmentDateTime

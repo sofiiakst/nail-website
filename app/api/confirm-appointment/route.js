@@ -61,7 +61,7 @@ export async function POST(req) {
 
     console.log("Appointment saved for:", m.fullName);
 
-    const siteUrl = "http://localhost:3000";
+    const siteUrl = "https://nail-website-lqsp.onrender.com";
 
     const emailResponse = await fetch(`${siteUrl}/api/contact`, {
       method: "POST",
