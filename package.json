@@ -16,6 +16,7 @@
     "@stripe/stripe-js": "^4.6.0",
     "@supabase/supabase-js": "^2.46.1",
     "clsx": "^2.1.1",
+    "convex": "^1.42.3",
     "date-fns": "^4.1.0",
     "framer-motion": "^11.11.7",
     "googleapis": "^144.0.0",

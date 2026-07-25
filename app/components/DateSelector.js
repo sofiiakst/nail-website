@@ -20,7 +20,7 @@ export default function DateSelector({ onSelectDate }) {
   };
 
   const today = startOfDay(new Date());
-  const twoWeeksLater = addDays(today, 13);
+
   return (
     <div className="flex flex-col justify-between ">
       <DayPicker
@@ -37,43 +37,8 @@ export default function DateSelector({ onSelectDate }) {
 
           const isAfterMax = date > maxDate;
           const isSundayOrMonday = date.getDay() === 0 || date.getDay() === 1;
-          const start = new Date(date.getFullYear(), 7, 10);
-          const end = new Date(date.getFullYear(), 7, 25);
 
-          const start1 = new Date(date.getFullYear(), 7, 1);
-          const end1 = new Date(date.getFullYear(), 7, 2);
-          const start2 = new Date(date.getFullYear(), 7, 7);
-          const end2 = new Date(date.getFullYear(), 7, 9);
-
-          const october28th = new Date(date.getFullYear(), 9, 28);
-          const december13th = new Date(date.getFullYear(), 11, 13);
-          const start3 = new Date(date.getFullYear(), 10, 4);
-          const end3 = new Date(date.getFullYear(), 10, 5);
-
-          const start4 = new Date(date.getFullYear(), 11, 24);
-          const end4 = new Date(date.getFullYear(), 11, 27);
-
-          const isInDisabledRange = date >= start && date <= end;
-          const isInDisabledRange1 = date >= start1 && date <= end1;
-          const isInDisabledRange2 = date >= start2 && date <= end2;
-          const isInDisabledRange3 = date >= start3 && date <= end3;
-          const isInDisabledRange4 = date >= start4 && date <= end4;
-          const isOctober28th =
-            date.toDateString() === october28th.toDateString();
-
-          const isDec13th = date.toDateString() === december13th.toDateString();
-
-          return (
-            isAfterMax ||
-            isBeforeToday ||
-            isSundayOrMonday ||
-            isInDisabledRange ||
-            isInDisabledRange1 ||
-            isInDisabledRange2 ||
-            isInDisabledRange3 ||
-            isOctober28th ||
-            isInDisabledRange4
-          );
+          return isAfterMax || isBeforeToday || isSundayOrMonday;
         }}
         className="pt-12 place-self-center text-black font-serif text-md  md:text-lg xl:text-xl notranslate"
         styles={{
@@ -86,7 +51,6 @@ export default function DateSelector({ onSelectDate }) {
         mode="single"
         hidden={{
           before: today,
-          after: twoWeeksLater,
         }}
         onSelect={handleDateSelect}
         selected={selectedDay}

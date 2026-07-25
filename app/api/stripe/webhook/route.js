@@ -65,7 +65,7 @@ export async function POST(req) {
 
       console.log("Appointment saved for:", m.fullName);
 
-      const emailResponse = await fetch("https://nail-topia.com/api/contact", {
+      const emailResponse = await fetch("http://localhost:3000/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

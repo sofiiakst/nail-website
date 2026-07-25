@@ -6,11 +6,10 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import Spinner from "./Spinner";
 import { revertToSuper } from "../lib/revertToSuper";
-
-import { getUserEmail } from "../lib/getUserEmail";
 
 export default function CheckoutPage2({
   amount,
@@ -26,32 +25,22 @@ export default function CheckoutPage2({
 }) {
   const stripe = useStripe();
   const elements = useElements();
+  const { data: session } = useSession();
+  const email = session?.user?.email || "";
 
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    async function fetchEmail() {
-      try {
-        const userEmail = await getUserEmail();
-        setEmail(userEmail);
-      } catch (error) {
-        console.error("Error fetching user email:", error);
-      }
-    }
+    if (!email) return;
 
-    fetchEmail();
-  }, []);
-
-  useEffect(() => {
     fetch("/api/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userEmail: email || "",
+        userEmail: email,
         amount: amount,
         appointmentDateTime: appointmentDateTime,
         tech: tech,
@@ -83,7 +72,7 @@ export default function CheckoutPage2({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `https://nail-topia.com/book-success?email=${encodeURIComponent(
+          return_url: `http://localhost:3000/book-success?email=${encodeURIComponent(
             email
           )}&appointmentDateTime=${encodeURIComponent(
             appointmentDateTime

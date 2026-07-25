@@ -8,7 +8,7 @@ export default function Form({
   onTechChange,
   selectedService,
 }) {
-  const eleniAllowedServices = [
+  /*const eleniAllowedServices = [
     "Μανικιουρ με μανο",
     "Μανικιουρ με ημιμονιμο",
     "Μανικιουρ ",
@@ -26,6 +26,7 @@ export default function Form({
     if (showEleni) return true;
     return t.name !== "Eleni";
   });
+  */
   return (
     <div>
       <form
@@ -102,7 +103,7 @@ export default function Form({
           >
             <option value="">Select a technician...</option>
 
-            {filteredTechs?.map((tech) => (
+            {tech?.map((tech) => (
               <option value={JSON.stringify(tech)} key={tech.name}>
                 {tech.name}
               </option>

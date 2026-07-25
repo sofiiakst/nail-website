@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "../lib/db";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function TimeSelector({
   onSelectTime,
@@ -11,27 +12,20 @@ export default function TimeSelector({
 }) {
   const [availableHours, setAvailableHours] = useState([]);
 
+  // Live query — re-runs automatically whenever appointments for this tech change.
+  const appointments = useQuery(
+    api.appointments.getAppsByTech,
+    selectedTech ? { tech: selectedTech.name } : "skip"
+  );
+
   useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const { data: appointments, error } = await supabase
-          .from("Appointments")
-          .select("appointmentDate, duration")
-          .eq("tech", selectedTech.name);
-
-        if (error) throw new Error("Failed to fetch appointments");
-
-        updateAvailableHours(selectedDate, appointments);
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
-        setAvailableHours([]);
-      }
-    };
-
-    if (selectedTech && selectedDate) {
-      fetchAppointments();
+    // Still loading, or no tech/date picked yet — don't compute anything.
+    if (!selectedTech || !selectedDate || appointments === undefined) {
+      return;
     }
-  }, [selectedTech, selectedDate, selectedService]);
+
+    updateAvailableHours(selectedDate, appointments);
+  }, [selectedTech, selectedDate, selectedService, appointments]);
 
   const updateAvailableHours = (selectedDate, appointments) => {
     if (!selectedDate) {
@@ -48,40 +42,9 @@ export default function TimeSelector({
     );
     const selectedDateStr = selectedDayUTC.toISOString().split("T")[0];
 
-    const isDec31 = (date) => {
-      if (date.getMonth() === 11 && date.getDate() === 31) {
-        return date.getDate();
-      }
-      return null;
-    };
-
-    let startHour, endHour;
-    const day = selectedDate.getDay();
-    const dec31 = isDec31(selectedDate);
-
-    if (selectedTech.name === "Maria") {
-      if (dec31) {
-        startHour = 10;
-        endHour = 14;
-      } else if (day >= 2 && day <= 5) {
-        startHour = 10;
-        endHour = 20;
-      } else if (day === 6) {
-        startHour = 10;
-        endHour = 18;
-      }
-    } else if (selectedTech.name === "Eleni") {
-      if (dec31) {
-        startHour = 12;
-        endHour = 14;
-      } else if (day >= 2 && day <= 5) {
-        startHour = 12;
-        endHour = 16;
-      } else if (day === 6) {
-        startHour = 10;
-        endHour = 14;
-      }
-    }
+    // Fixed window, no more per-tech/day-of-week/Dec31 branching.
+    const startHour = 10;
+    const endHour = 20;
 
     let slots = [];
 
@@ -115,7 +78,6 @@ export default function TimeSelector({
       const slotStartMin = parseInt(minStr, 10);
 
       const totalMinutes = slotStartHour * 60 + slotStartMin;
-      const slotTimes = [];
 
       for (let i = 0; i < selectedService.duration; i++) {
         const minutes = totalMinutes + i * 30;
@@ -126,8 +88,6 @@ export default function TimeSelector({
         if (blockedSlots.has(timeStr)) {
           return false;
         }
-
-        slotTimes.push(timeStr);
       }
 
       const endMinutes = totalMinutes + selectedService.duration * 30;

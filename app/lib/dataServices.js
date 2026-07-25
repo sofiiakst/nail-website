@@ -1,10 +1,9 @@
-import supabase from "./db";
-import { v4 as uuidv4 } from "uuid";
+import { fetchQuery, fetchMutation } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
+
 export async function getMani() {
   try {
-    const { data: mani, error } = await supabase.from("Mani").select("*");
-    if (error) throw error;
-    return mani;
+    return await fetchQuery(api.mani.getMani);
   } catch (error) {
     console.error("Error fetching manicures:", error);
     return [];
@@ -13,9 +12,7 @@ export async function getMani() {
 
 export async function getLashes() {
   try {
-    const { data: lashes, error } = await supabase.from("Lashes").select("*");
-    if (error) throw error;
-    return lashes;
+    return await fetchQuery(api.lashes.getLashes);
   } catch (error) {
     console.error("Error fetching lashes:", error);
     return [];
@@ -24,9 +21,7 @@ export async function getLashes() {
 
 export async function getExtras() {
   try {
-    const { data: extras, error } = await supabase.from("Extras").select("*");
-    if (error) throw error;
-    return extras;
+    return await fetchQuery(api.extras.getExtras);
   } catch (error) {
     console.error("Error fetching extras:", error);
     return [];
@@ -35,9 +30,7 @@ export async function getExtras() {
 
 export async function getBrows() {
   try {
-    const { data: brows, error } = await supabase.from("Brows").select("*");
-    if (error) throw error;
-    return brows;
+    return await fetchQuery(api.brows.getBrows);
   } catch (error) {
     console.error("Error fetching brows:", error);
     return [];
@@ -46,9 +39,7 @@ export async function getBrows() {
 
 export async function getPedi() {
   try {
-    const { data: pedi, error } = await supabase.from("Pedi").select("*");
-    if (error) throw error;
-    return pedi;
+    return await fetchQuery(api.pedi.getPedi);
   } catch (error) {
     console.error("Error fetching pedicures:", error);
     return [];
@@ -57,9 +48,7 @@ export async function getPedi() {
 
 export async function getTech() {
   try {
-    const { data: tech, error } = await supabase.from("Tech").select("*");
-    if (error) throw error;
-    return tech;
+    return await fetchQuery(api.tech.getTech);
   } catch (error) {
     console.error("Error fetching technicians:", error);
     return [];
@@ -68,11 +57,7 @@ export async function getTech() {
 
 export async function getApps() {
   try {
-    const { data: apps, error } = await supabase
-      .from("Appointments")
-      .select("*");
-    if (error) throw error;
-    return apps;
+    return await fetchQuery(api.appointments.getApps);
   } catch (error) {
     console.error("Error fetching appointments:", error);
     return [];
@@ -81,17 +66,11 @@ export async function getApps() {
 
 export async function getAppsByTech(tech) {
   try {
-    const { data: apps, error } = await supabase
-      .from("Appointments")
-      .select("*")
-      .eq("tech", tech);
-    if (error) throw error;
-
+    const apps = await fetchQuery(api.appointments.getAppsByTech, { tech });
     if (!apps || apps.length === 0) {
       console.warn(`No appointments found for tech: ${tech}`);
       return [];
     }
-
     return apps;
   } catch (error) {
     console.error("Error retrieving appointments:", error);
@@ -102,17 +81,11 @@ export async function getAppsByTech(tech) {
 export async function getAppsByMail(email) {
   try {
     console.log("Looking for appointments with email:", email);
-    const { data: apps, error } = await supabase
-      .from("Appointments")
-      .select("*")
-      .eq("userEmail", email);
-    if (error) throw error;
-
+    const apps = await fetchQuery(api.appointments.getAppsByMail, { email });
     if (!apps || apps.length === 0) {
       console.warn(`No appointments found for email: ${email}`);
       return [];
     }
-
     return apps;
   } catch (error) {
     console.error("Error retrieving appointments:", error);
@@ -120,20 +93,14 @@ export async function getAppsByMail(email) {
   }
 }
 
+// NOTE: maniId/pediId are now Convex _id strings, not Supabase numeric ids.
 export async function getManiById(maniId) {
   try {
-    const { data: mani, error } = await supabase
-      .from("Mani")
-      .select("*")
-      .eq("id", maniId)
-      .single();
-    if (error) throw error;
-
+    const mani = await fetchQuery(api.mani.getManiById, { maniId });
     if (!mani) {
       console.warn(`No mani found with ID: ${maniId}`);
       return null;
     }
-
     return mani;
   } catch (error) {
     console.error("Error retrieving mani:", error);
@@ -143,124 +110,116 @@ export async function getManiById(maniId) {
 
 export async function getPediById(pediId) {
   try {
-    const { data: pedi, error } = await supabase
-      .from("Pedi")
-      .select("*")
-      .eq("id", pediId)
-      .single();
-    if (error) throw error;
-
+    const pedi = await fetchQuery(api.pedi.getPediById, { pediId });
     if (!pedi) {
       console.warn(`No pedi found with ID: ${pediId}`);
       return null;
     }
-
     return pedi;
   } catch (error) {
     console.error("Error retrieving pedi:", error);
     return null;
   }
 }
+
 export async function saveAppointment(appointment) {
   try {
-    const { data, error } = await supabase
-      .from("Appointments")
-      .insert([appointment])
-      .select("id")
-      .single();
-
-    if (error) {
-      throw error;
-    }
-
-    return data.id;
+    const id = await fetchMutation(api.appointments.saveAppointment, {
+      appointment,
+    });
+    return id; // Convex _id
   } catch (error) {
-    console.error("Error saving appointment to Supabase:", error);
+    console.error("Error saving appointment to Convex:", error);
     throw error;
   }
 }
 
 export async function deleteAppointment(id) {
-  const { data, error } = await supabase
-    .from("Appointments")
-    .delete()
-    .eq("id", id);
-  return { data, error };
+  try {
+    const data = await fetchMutation(api.appointments.deleteAppointment, {
+      id,
+    });
+    return { data, error: null };
+  } catch (error) {
+    return { data: null, error };
+  }
 }
+
+// Renamed from getAppointments to avoid clashing with getApps in usage —
+// keep as getAppointments if that's what your call sites use.
 export async function getAppointments(current) {
-  const start = new Date(current);
-  start.setDate(start.getDate() + 1);
-  start.setHours(0, 0, 0, 0);
-
-  const end = new Date(start);
-  end.setHours(23, 59, 59, 999);
-
-  const { data: appointments, error } = await supabase
-    .from("Appointments")
-    .select("*")
-    .gte("appointmentDate", start.toISOString())
-    .lte("appointmentDate", end.toISOString());
-
-  if (error) {
+  try {
+    return await fetchQuery(api.appointments.getAppointmentsByDate, {
+      current: new Date(current).toISOString(),
+    });
+  } catch (error) {
     console.error("Error fetching appointments:", error);
     throw error;
   }
-
-  return appointments;
 }
+
+// Convex storage instead of a Supabase bucket. `file` should be a
+// File/Blob (e.g. from formData in an API route or client upload handler).
 export async function uploadImage(file, appointmentId) {
   if (!file || !appointmentId) return null;
-  const uuid = uuidv4();
 
-  const fileName = `${uuid}-${file.name}`;
-  const fileExtension = fileName.slice(fileName.lastIndexOf(".") + 1);
+  try {
+    const uploadUrl = await fetchMutation(api.files.generateUploadUrl);
 
-  const filePath = `appointments/${appointmentId}/${uuidv4()}.${fileExtension}`;
+    const result = await fetch(uploadUrl, {
+      method: "POST",
+      headers: { "Content-Type": file.type },
+      body: file,
+    });
 
-  const { data, error } = await supabase.storage
-    .from("nail-refs")
-    .upload(filePath, file);
+    if (!result.ok) {
+      throw new Error(`Upload failed with status ${result.status}`);
+    }
 
-  if (error) {
-    console.error("Error uploading image:", error.message);
+    const { storageId } = await result.json();
+
+    const url = await fetchQuery(api.files.getUrl, { storageId });
+    return url;
+  } catch (error) {
+    console.error("Error uploading image:", error);
     return null;
   }
-
-  const { data: publicUrlData } = supabase.storage
-    .from("nail-refs")
-    .getPublicUrl(filePath);
-
-  return publicUrlData.publicUrl;
 }
 
 export async function updateAppointmentWithImage(appointmentId, imageUrl) {
-  const { error } = await supabase
-    .from("Appointments")
-    .update({ image: imageUrl })
-    .eq("id", appointmentId);
-
-  if (error) {
+  try {
+    await fetchMutation(api.appointments.updateAppointmentWithImage, {
+      appointmentId,
+      imageUrl,
+    });
+    return true;
+  } catch (error) {
     console.error("Error updating appointment with image:", error);
     return null;
   }
-
-  return true;
 }
 
 export async function appointmentExistsByPaymentIntentId(payIntID) {
-  const { data, error } = await supabase
-    .from("Appointments")
-    .select("id")
-    .eq("stripePaymentIntentId", payIntID)
-    .limit(1)
-    .single();
-
-  if (error) {
-    if (error.code !== "PGRST116") {
-      console.error("Error checking appointment existence:", error.message);
-    }
+  try {
+    return await fetchQuery(
+      api.appointments.appointmentExistsByPaymentIntentId,
+      {
+        payIntID,
+      }
+    );
+  } catch (error) {
+    console.error("Error checking appointment existence:", error.message);
     return false;
   }
+}
 
-  return !!data;
+export async function saveAppointmentIfNotExists(appointment) {
+  try {
+    return await fetchMutation(api.appointments.saveAppointmentIfNotExists, {
+      appointment,
+    });
+  } catch (error) {
+    console.error("Error saving appointment to Convex:", error);
+    throw error;
+  }
 }
