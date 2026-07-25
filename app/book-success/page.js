@@ -69,7 +69,7 @@ export default function Page({ searchParams }) {
 
           {status === "error" && (
             <p className="text-sm text-red-500 text-center mt-3">
-              We couldn't confirm your appointment automatically — please
+              We could not confirm your appointment automatically — please
               contact us with your payment confirmation.
             </p>
           )}
