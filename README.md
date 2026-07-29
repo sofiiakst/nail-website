@@ -32,5 +32,4 @@ Tech Stack
 - Stripe
 - nodemailer
 
-- ![General Diagram](./diagram-white-bg%20.png)
-
+- ![General Diagram](/diagram-white-bg%20.png)
