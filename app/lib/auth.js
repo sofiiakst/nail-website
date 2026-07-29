@@ -16,6 +16,7 @@ const authConfig = {
   pages: {
     signIn: "/login",
   },
+  trustHost: true,
 };
 
 export const {
