@@ -31,3 +31,6 @@ Tech Stack
 - Google OAuth2
 - Stripe
 - nodemailer
+
+- ![General Diagram](./diagram-white-bg%20.png)
+
